@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="@color/color_28a7e1"
+            android:paddingLeft="@dimen/toolbar_padding_left"
+            android:paddingRight="@dimen/toolbar_padding_right"
+            android:theme="@style/ToolbarTheme"
+            app:contentInsetStart="0dp"
+            app:popupTheme="@style/ToolbarTheme">
+
+            <LinearLayout
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:background="@drawable/wt_bg_unreadchat_wh_191022"
+                android:gravity="center"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:includeFontPadding="false"
+                    android:text="1"
+                    android:textColor="@color/color_28a7e1"
+                    android:textSize="13dp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:includeFontPadding="false"
+                android:maxWidth="210dp"
+                android:singleLine="true"
+                android:text="홍길동"
+                android:textColor="@color/color_white"
+                android:textSize="19dp"
+                android:textStyle="bold" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <!-- recyclerview area -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/color_f2f3f4" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="3px"
+            android:background="@drawable/wt_chatline_191022" />
+
+        <!-- bottom menu area -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:layout_gravity="bottom"
+                android:paddingLeft="23dp">
+
+                <ImageView
+                    android:layout_width="35dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/wt_btn_chatmore_191022" />
+            </FrameLayout>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@null"
+                android:hint="@string/act_chat_hint"
+                android:lineSpacingExtra="2dp"
+                android:maxLines="4"
+                android:paddingLeft="10dp"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:textColor="@color/color_222222"
+                android:textColorHint="@color/color_aaaaaa"
+                android:textSize="16dp" />
+
+
+            <FrameLayout
+                android:layout_width="wrap_content"
+                android:layout_height="56dp"
+                android:layout_gravity="bottom"
+                android:paddingRight="23dp">
+
+                <ImageView
+                    android:layout_width="53dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/wt_btn_chatsend_191022" />
+            </FrameLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

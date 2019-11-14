@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+<!--    <item android:id="@+id/action_button2"-->
+<!--        android:title="(100)"-->
+<!--        app:showAsAction="always|withText" />-->
+<!--    <item-->
+<!--        android:id="@+id/action_search"-->
+<!--        android:actionLayout="@layout/custom_menu_item01"-->
+<!--        android:title="Search"-->
+<!--        app:showAsAction="always" />-->
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/wt_icon_search_gr_191022"
+        android:title="Search"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_qrcode"
+        android:icon="@drawable/wt_icon_qr_gr_191022"
+        android:title="Search"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_setting"
+        android:icon="@drawable/wt_icon_set_gr_191022"
+        android:title="Add"
+        app:showAsAction="always" />
+
+</menu>

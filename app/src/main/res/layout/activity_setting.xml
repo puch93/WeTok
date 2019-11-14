@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_white"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="@color/color_28a7e1"
+            android:paddingLeft="@dimen/toolbar_padding_left"
+            android:paddingRight="@dimen/toolbar_padding_right"
+            android:theme="@style/ToolbarTheme"
+            app:contentInsetStart="0dp"
+            app:popupTheme="@style/ToolbarTheme">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/act_setting_title"
+                android:textColor="@color/color_white"
+                android:textSize="19dp"
+                android:textStyle="bold" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/ll_version"
+                android:layout_width="match_parent"
+                android:layout_height="59dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="23dp"
+                android:paddingRight="23dp">
+
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/wt_icon_ver_191022" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="@string/act_setting_menu01"
+                    android:textColor="@color/color_444444"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/wt_icon_arrow_191022" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="3px"
+                android:background="@drawable/wt_line360_191022" />
+
+            <LinearLayout
+                android:id="@+id/ll_notice"
+                android:layout_width="match_parent"
+                android:layout_height="59dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="23dp"
+                android:paddingRight="23dp">
+
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/wt_icon_notice_191022" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="@string/act_setting_menu02"
+                    android:textColor="@color/color_444444"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/wt_icon_arrow_191022" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="3px"
+                android:background="@drawable/wt_line360_191022" />
+
+            <LinearLayout
+                android:id="@+id/ll_terms_use"
+                android:layout_width="match_parent"
+                android:layout_height="59dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="23dp"
+                android:paddingRight="23dp">
+
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/wt_icon_terms_191022" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="@string/act_setting_menu03"
+                    android:textColor="@color/color_444444"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/wt_icon_arrow_191022" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="3px"
+                android:background="@drawable/wt_line360_191022" />
+
+            <LinearLayout
+                android:id="@+id/ll_terms_private"
+                android:layout_width="match_parent"
+                android:layout_height="59dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="23dp"
+                android:paddingRight="23dp">
+
+                <ImageView
+                    android:layout_width="23dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/wt_icon_privacy_191022" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_weight="1"
+                    android:text="@string/act_setting_menu04"
+                    android:textColor="@color/color_444444"
+                    android:textSize="16dp" />
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/wt_icon_arrow_191022" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="3px"
+                android:background="@drawable/wt_line360_191022" />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

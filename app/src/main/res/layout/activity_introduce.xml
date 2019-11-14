@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_white"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:background="@color/color_28a7e1"
+            android:paddingLeft="@dimen/toolbar_padding_left"
+            android:paddingRight="@dimen/toolbar_padding_right"
+            android:theme="@style/ToolbarTheme"
+            app:contentInsetStart="0dp"
+            app:popupTheme="@style/ToolbarTheme">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:includeFontPadding="false"
+                android:text="@string/act_intro_title"
+                android:textColor="@color/color_white"
+                android:textSize="19dp"
+                android:textStyle="bold" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingTop="32dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:text="@string/act_intro_explanation"
+                android:textColor="@color/color_444444"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/et_introduce"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginLeft="23dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="23dp"
+                android:layout_weight="1"
+                android:background="@drawable/wt_inpbox_191022"
+                android:gravity="top"
+                android:hint="@string/act_intro_hint"
+                android:paddingLeft="14dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:paddingRight="14dp"
+                android:singleLine="true"
+                android:textColor="@color/color_444444"
+                android:textColorHint="@color/color_aaaaaa"
+                android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:background="@drawable/wt_btn360_enable_191022"
+            android:gravity="center"
+            android:text="@string/confirm"
+            android:textColor="@color/color_white"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</layout>

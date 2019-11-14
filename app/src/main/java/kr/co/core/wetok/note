@@ -1,0 +1,33 @@
+
+
+private void getTerms(String type) {
+        ReqBasic server = new ReqBasic(act, NetUrls.ADDRESS) {
+            @Override
+            public void onAfter(int resultCode, HttpResult resultData) {
+                Log.i(StringUtil.TAG, "getTerms:  " + resultData.getResult() + "\ncode: " + resultCode);
+
+                if (resultData.getResult() != null) {
+                    try {
+                        JSONObject jo = new JSONObject(resultData.getResult());
+
+                        if(jo.getString("result").equalsIgnoreCase("Y")) {
+
+                        } else {
+
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Common.showToastNetwork(act);
+                    }
+                } else {
+                    Common.showToastNetwork(act);
+                }
+            }
+        };
+
+        server.addParams("dbControl", "");
+        server.setTag("");
+        server.execute(true, false);
+    }
+

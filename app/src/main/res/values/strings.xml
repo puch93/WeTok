@@ -1,0 +1,262 @@
+<resources>
+    <string name="app_name">WeTOK</string>
+
+
+    <string name="next">다음</string>
+    <string name="confirm">확인</string>
+    <string name="profile">프로필 수정</string>
+    <string name="charm">부적선물</string>
+    <string name="friend_add">친구 추가</string>
+
+
+    <!-- activity_chat -->
+    <string name="act_chat_hint">메세지를 입력하세요</string>
+
+
+    <!-- activity_join -->
+    <string name="act_join_title">아이디 입력</string>
+    <string name="act_join_process01">아이디 입력</string>
+    <string name="act_join_process02">비밀번호 입력</string>
+    <string name="act_join_process03">정보입력</string>
+    <string name="act_join_process04">가입완료</string>
+
+
+    <!-- activity_main -->
+    <string name="act_main_menu01">친구</string>
+    <string name="act_main_menu02">대화</string>
+    <string name="act_main_menu03">전체서비스</string>
+    <string name="act_main_menu04">위스토어</string>
+
+
+    <!-- fragment_all_service -->
+    <string name="frag_all_service_title">전체서비스</string>
+    <string name="frag_all_service_currency">원</string>
+    <string name="frag_all_service_profile">프로필 수정</string>
+    <string name="frag_all_service_charge">충전</string>
+    <string name="frag_all_service_remittance">송금</string>
+    <string name="frag_all_service_menu01">TV보기</string>
+    <string name="frag_all_service_menu02">영화보기</string>
+    <string name="frag_all_service_menu03">인연찾기</string>
+    <string name="frag_all_service_menu04">운세보기</string>
+    <string name="frag_all_service_menu05">환전시세</string>
+    <string name="frag_all_service_menu06">구인구직</string>
+    <string name="frag_all_service_menu07">부동산</string>
+    <string name="frag_all_service_menu08">쇼핑하기</string>
+    <string name="frag_all_service_bottom">더 많은 APP들이 있는 스토어를 확인하세요!</string>
+
+
+    <!-- fragment_chatting -->
+    <string name="frag_chatting_title">Wetok 대화</string>
+
+
+    <!-- fragment_friend_list_title -->
+    <string name="frag_friend_list_title">Wetok 친구</string>
+
+
+    <!-- fragment_join_01 -->
+    <string name="frag_join01_hint">아이디를 입력해주세요</string>
+    <string name="frag_join01_explanation">시용하실 아이디를 입력하세요</string>
+
+    <!-- fragment_join_02 -->
+    <string name="frag_join02_hint">비밀번호를 입력해주세요</string>
+    <string name="frag_join02_explanation">시용하실 비밀번호를 입력하세요</string>
+
+    <!-- fragment_join_03 -->
+    <string name="frag_join03_hint">이름을 입력해주세요</string>
+    <string name="frag_join03_explanation">사용하실 이름과 태어난 년도를 입력하세요</string>
+
+    <!-- fragment_join_04 -->
+    <string name="frag_join04_explanation">축하합니다!\n가입이 완료 되었습니다!</string>
+
+
+    <!-- layout_02 -->
+    <string name="layout_02_profile">프로필 수정</string>
+    <string name="layout_02_menu01">운세보기</string>
+    <string name="layout_02_menu02">송금하기</string>
+    <string name="layout_02_menu03">내스토리</string>
+
+    <!-- layout_03 -->
+    <string name="layout_02_charm">부적선물</string>
+    <string name="layout_03_menu01">1:1채팅</string>
+    <string name="layout_03_menu02">송금하기</string>
+    <string name="layout_03_menu03">내스토리</string>
+
+
+    <!-- activity_profile -->
+    <string name="act_profile_title">프로필 관리</string>
+    <string name="act_profile_name">이름</string>
+    <string name="act_profile_birth">생년</string>
+    <string name="act_profile_introduce">상태메세지</string>
+    <string name="act_profile_number">휴대폰 번호</string>
+    <string name="act_profile_id">위톡 아이디</string>
+    <string name="act_profile_pw">위톡 비밀번호</string>
+
+    <!-- dialog_imgload -->
+    <string name="dlg_imgload_title">사진 불러오기</string>
+    <string name="dlg_imgload_explanation01">본인 식별이 어려운 경우 인증 불가합니다</string>
+    <string name="dlg_imgload_explanation02">이미지 도용 및 불건전한 사진은 삭제됩니다</string>
+    <string name="dlg_imgload_btn01">앨범에서 가져오기</string>
+    <string name="dlg_imgload_btn02">카메라로 촬영하기</string>
+    <string name="dlg_imgload_btn03">삭제하기</string>
+
+    <!-- activity_permission -->
+    <string name="act_permission_title">접근권한 허용</string>
+    <string name="act_permission_notice01">위톡 서비스를 이용하기 위해</string>
+    <string name="act_permission_notice02">다음과 같은 </string>
+    <string name="act_permission_notice03">권한허용</string>
+    <string name="act_permission_notice04">이 필요합니다.</string>
+    <string name="act_permission_contents_title">필수 접근 권한</string>
+    <string name="act_permission_contents_sub_title01">전화번호</string>
+    <string name="act_permission_contents_sub_explanation01">회원가입 간소화와 사용자를 고유 식별하기위해 사용자의 전화번호 와 기기아이디를 수집하며, 인앱결제내역 관리 등을 위해 필요합니다</string>
+    <string name="act_permission_contents_sub_title02">저장공간</string>
+    <string name="act_permission_contents_sub_explanation02">사용자 프로필 저장 및 인앱 상품 결제 후 관련컨텐츠 저장을 위한 내부 저장소 접근과 저장에 필요합니다</string>
+    <string name="act_permission_contents_btn01">개인정보 처리방침 보기</string>
+    <string name="act_permission_contents_btn02">동의하기</string>
+
+
+
+    <!-- activity_name -->
+    <string name="act_name_title">이름 변경</string>
+    <string name="act_name_explanation">변경 할 이름을 입력해주세요.</string>
+    <string name="act_name_hint">이름을 입력해주세요</string>
+
+    <!-- activity_birth -->
+    <string name="act_birth_title">생년 변경</string>
+    <string name="act_birth_explanation">변경 할 생년을 선택해주세요.</string>
+
+    <!-- activity_introduce -->
+    <string name="act_intro_title">상태메세지 변경</string>
+    <string name="act_intro_explanation">변경 할 상태메세지를 입력해주세요.</string>
+    <string name="act_intro_hint">상태메세지를 입력해주세요</string>
+
+
+    <!-- activity_info -->
+    <string name="act_info_number_title">휴대폰 번호</string>
+    <string name="act_info_number_explanation">회원님의 등록된 전화번호</string>
+    <string name="act_info_id_title">위톡 ID</string>
+    <string name="act_info_id_explanation">회원님의 위톡 ID</string>
+
+
+    <!-- activity_add_friend -->
+    <string name="act_friend_add_menu_explanation01">를&#160;</string>
+    <string name="act_friend_add_menu_explanation02">추가</string>
+    <string name="act_friend_add_menu_explanation03">할 수 있습니다</string>
+
+    <string name="act_friend_add_title">친구 추가</string>
+    <string name="act_friend_add_menu01">연락처로 친구 추가</string>
+    <string name="act_friend_add_menu01_hint_name">이름을 입력해주세요</string>
+    <string name="act_friend_add_menu01_hint_number">휴대폰 번호를 입력해주세요</string>
+    <string name="act_friend_add_menu01_explanation01">연락처로 친구</string>
+    <string name="act_friend_add_menu01_explanation02">추가하고 싶은 친구의 이름과</string>
+    <string name="act_friend_add_menu01_explanation03">휴대전화 번호를 입력해주세요</string>
+
+    <string name="act_friend_add_menu02">ID 검색</string>
+    <string name="act_friend_add_explanation">회원님의 위톡 ID</string>
+    <string name="act_friend_add_menu02_hint_id">ID를 입력해주세요</string>
+    <string name="act_friend_add_menu02_explanation01">ID로 친구</string>
+    <string name="act_friend_add_menu02_explanation02">추가하고 싶은 친구의 ID를 입력해주세요</string>
+
+
+    <!-- activity_login -->
+    <!-- layout -->
+    <string name="act_login_hint_id">아이디</string>
+    <string name="act_login_hint_pw">비밀번호</string>
+    <string name="act_login_login">로그인</string>
+    <string name="act_login_join">회원가입</string>
+    <string name="act_login_find_id">아이디가 기억나지 않으세요?</string>
+    <string name="act_login_find_pw">비밀번호가 기억나지 않으세요?</string>
+    <!-- code -->
+    <string name="login_id_warning">휴대폰 번호 및 아이디를 입력해주세요</string>
+    <string name="login_pw_warning">비밀번호를 입력해주세요</string>
+    <string name="login_pw_length_warning">비밀번호는 8~16자리 입니다</string>
+
+
+    <!-- activity_find_pw -->
+    <string name="act_find_pw_title">비밀번호 재설정</string>
+
+
+    <!-- fragment_find_01 -->
+    <!-- layout -->
+    <!--    <string name="frag_find01_auth">인증번호 받기</string>-->
+    <!--    <string name="frag_find01_reauth">인증번호 재전송</string>-->
+    <string name="frag_find01_id_hint">아이디를 입력해주세요</string>
+    <string name="frag_find01_number_hint">휴대폰 번호를 입력해주세요</string>
+    <string name="frag_find01_auth_hint">인증번호 4자리를 입력해주세요</string>
+    <!-- code -->
+    <string name="find_name_warning">아이디를 입력해주세요</string>
+    <string name="find_number_warning">휴대폰 번호를 입력해주세요</string>
+    <!--    <string name="find_auth_warning">인증번호를 정확히 입력해주세요</string>-->
+
+
+    <!-- fragment_find_02 -->
+    <!-- layout -->
+    <string name="frag_find02_top">새로운 비밀번호를 입력해주세요</string>
+    <string name="frag_find02_pw">비밀번호(8~16자리)</string>
+    <string name="frag_find02_pw_confirm">비밀번호를 한번 더 입력해주세요</string>
+    <!-- code -->
+    <string name="find_pw_warning">비밀번호를 확인해주세요</string>
+    <string name="find_pw_confirm_warning">비밀번호를 한번 더 입력해주세요</string>
+    <string name="find_pw_same_warning">비밀번호가 일치하지 않습니다</string>
+    <string name="find_pw_length_warning">비밀번호는 8~16자리 입니다</string>
+
+
+    <!-- dialog_password -->
+    <string name="dlg_password_text">비밀번호가 변경되었습니다</string>
+
+
+    <!-- activity_setting -->
+    <string name="act_setting_title">설정</string>
+    <string name="act_setting_menu01">버전</string>
+    <string name="act_setting_menu02">공지사항</string>
+    <string name="act_setting_menu03">이용약관</string>
+    <string name="act_setting_menu04">개인정보취급방침</string>
+
+
+    <!-- activity_version -->
+    <string name="act_version_title">버전</string>
+    <string name="act_version_text">업데이트 하기</string>
+
+
+    <!-- activity_notice -->
+    <string name="act_notice_title">공지사항</string>
+
+
+    <!-- activity_terms -->
+    <string name="act_terms_use_title">이용약관</string>
+    <string name="act_terms_private_title">개인정보취급방침</string>
+
+    <!-- activity_story_register -->
+    <string name="act_story_title">스토리 등록</string>
+    <string name="act_story_contents_hint">내용을 입력해주세요</string>
+    <string name="act_story_btn">등록하기</string>
+
+
+
+
+
+    <!-- array area -->
+    <!-- array area -->
+    <string-array name="country_code">
+        <item>+82</item>
+        <item>+86</item>
+        <item>+87</item>
+        <item>+88</item>
+        <item>+89</item>
+    </string-array>
+
+    <string-array name="birth_code">
+        <item>1990</item>
+        <item>1991</item>
+        <item>1992</item>
+        <item>1993</item>
+        <item>1994</item>
+        <item>1995</item>
+        <item>1996</item>
+        <item>1997</item>
+        <item>1998</item>
+        <item>1999</item>
+        <item>2000</item>
+    </string-array>
+
+
+</resources>

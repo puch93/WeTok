@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingLeft="23dp"
+            android:paddingTop="23dp"
+            android:paddingRight="23dp">
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@drawable/wt_inpbox_191022"
+                android:hint="@string/frag_join03_hint"
+                android:paddingLeft="13dp"
+                android:singleLine="true"
+                android:textColor="@color/color_222222"
+                android:textColorHint="@color/color_aaaaaa"
+                android:textSize="14dp" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="13dp"
+                android:background="@drawable/wt_inpbox_191022">
+
+                <kr.co.core.wetok.util.CustomSpinner
+                    android:id="@+id/spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@null"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:overlapAnchor="false"
+                    android:spinnerMode="dropdown" />
+
+                <LinearLayout
+                    android:id="@+id/ll_spinner_birth"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="right">
+
+                    <ImageView
+                        android:id="@+id/iv_arrow"
+                        android:layout_width="12dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|right"
+                        android:layout_marginRight="13dp"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/sel_dropdown_arrow" />
+                    <!--                    android:src="@drawable/wt_icon_dropdown_191022" />-->
+                </LinearLayout>
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                android:gravity="center"
+                android:lineSpacingExtra="4dp"
+                android:text="@string/frag_join03_explanation"
+                android:textColor="@color/color_666666"
+                android:textSize="18dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            android:background="@drawable/wt_btn360_disable_191022"
+            android:gravity="center"
+            android:text="@string/next"
+            android:textColor="@color/color_white"
+            android:textSize="18dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+</layout>

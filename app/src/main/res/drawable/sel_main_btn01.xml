@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@drawable/wt_navi_friend_dis_191022" android:state_selected="false"/>
+    <item android:drawable="@drawable/wt_navi_friend_on_191022" android:state_selected="true"/>
+</selector>

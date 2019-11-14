@@ -1,0 +1,42 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/color_28a7e1</item>
+        <item name="colorAccent">@color/color_28a7e1</item>
+        <item name="android:dropDownListViewStyle">@style/SpinnerStyle</item>
+    </style>
+
+    <!-- toolbar button size -->
+    <style name="ActionButton" parent="@android:style/Widget.ActionButton">
+        <item name="android:minWidth">32dp</item>
+        <item name="android:maxWidth">32dp</item>
+        <item name="android:width">32dp</item>
+    </style>
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="android:actionButtonStyle">@style/ActionButton</item>
+        <item name="actionButtonStyle">@style/ActionButton</item>
+    </style>
+
+    <!-- spinner style -->
+    <style name="SpinnerStyle" parent="Widget.AppCompat.ListView.DropDown">
+        <item name="android:divider">@color/color_aaaaaa</item>
+        <item name="android:dividerHeight">0.05dp</item>
+    </style>
+
+    <!-- dialog activity style -->
+    <style name="ActivityDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
+
+    <!-- code dialog style -->
+    <style name="CodeDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">false</item>
+    </style>
+</resources>

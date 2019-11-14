@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "254860700690",
+    "firebase_url": "https://wetok-f4b48.firebaseio.com",
+    "project_id": "wetok-f4b48",
+    "storage_bucket": "wetok-f4b48.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:254860700690:android:eba882f2c9f94ac0a83ccb",
+        "android_client_info": {
+          "package_name": "kr.co.core.wetok"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "254860700690-c8sq7chepicpghpvhmtpnrlj0s82381f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAl-Tkr2VF8X1Hf9Q2aXeq4zRUCyLo8ANU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "254860700690-c8sq7chepicpghpvhmtpnrlj0s82381f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
