@@ -13,12 +13,20 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.lang.reflect.Field;
 
 import kr.co.core.wetok.R;
 import kr.co.core.wetok.adapter.WriteSpinnerAdapter;
 import kr.co.core.wetok.databinding.ActivityBirthBinding;
 import kr.co.core.wetok.databinding.ActivityNameBinding;
+import kr.co.core.wetok.preference.UserPref;
+import kr.co.core.wetok.server.ReqBasic;
+import kr.co.core.wetok.server.netUtil.HttpResult;
+import kr.co.core.wetok.server.netUtil.NetUrls;
+import kr.co.core.wetok.util.Common;
 import kr.co.core.wetok.util.CustomSpinner;
 
 public class BirthAct extends AppCompatActivity {
@@ -40,6 +48,38 @@ public class BirthAct extends AppCompatActivity {
         setActionBar();
         setSpinner();
     }
+
+    private void setBirth() {
+        ReqBasic server = new ReqBasic(act, NetUrls.ADDRESS) {
+            @Override
+            public void onAfter(int resultCode, HttpResult resultData) {
+                if (resultData.getResult() != null) {
+                    try {
+                        JSONObject jo = new JSONObject(resultData.getResult());
+
+                        if(jo.getString("result").equalsIgnoreCase("Y")) {
+                            finish();
+                        } else {
+
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Common.showToastNetwork(act);
+                    }
+                } else {
+                    Common.showToastNetwork(act);
+                }
+            }
+        };
+
+        server.setTag("Set Birth");
+        server.addParams("dbControl", NetUrls.SET_PROFILE_BIRTH);
+        server.addParams("m_idx", UserPref.getMidx(act));
+        server.addParams("m_birth", binding.spinner.getSelectedItem().toString());
+        server.execute(true, false);
+    }
+
 
     private void setSpinner() {
         // set spinner

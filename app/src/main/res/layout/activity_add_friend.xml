@@ -105,7 +105,7 @@
             android:paddingLeft="23dp"
             android:paddingTop="34dp"
             android:paddingRight="23dp"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <EditText
                 android:id="@+id/et_name"
@@ -169,6 +169,7 @@
 
 
             <TextView
+                android:id="@+id/tv_add_from_hp"
                 android:layout_width="206dp"
                 android:layout_height="52dp"
                 android:layout_marginTop="33dp"
@@ -253,7 +254,7 @@
             android:paddingLeft="23dp"
             android:paddingTop="34dp"
             android:paddingRight="23dp"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <EditText
                 android:id="@+id/et_id"
@@ -269,6 +270,7 @@
 
 
             <TextView
+                android:id="@+id/tv_add_from_id"
                 android:layout_width="206dp"
                 android:layout_height="52dp"
                 android:layout_marginTop="33dp"

@@ -73,6 +73,7 @@ public class SplashAct extends BaseAct {
         if (!checkPermission()) {
             startActivityForResult(new Intent(act, PermissionAct.class), PERMISSION);
         } else {
+            UserPref.setDeviceId(act, Common.getDeviceId(act));
             getFcmToken();
             checkSetting();
         }
@@ -82,7 +83,6 @@ public class SplashAct extends BaseAct {
         ReqBasic server = new ReqBasic(act, NetUrls.ADDRESS) {
             @Override
             public void onAfter(int resultCode, HttpResult resultData) {
-                Log.i(StringUtil.TAG, "getTerms:  " + resultData.getResult() + "\ncode: " + resultCode);
 
                 final String res = resultData.getResult();
 
@@ -162,7 +162,7 @@ public class SplashAct extends BaseAct {
         };
 
         server.setTag("App Version");
-        server.addParams("dbControl", "getAppVersion");
+        server.addParams("dbControl", NetUrls.GET_VERSION);
         server.execute(true, false);
     }
 
@@ -172,12 +172,12 @@ public class SplashAct extends BaseAct {
                     @Override
                     public void onComplete(@NonNull Task<InstanceIdResult> task) {
                         if (!task.isSuccessful()) {
-                            Log.i("TEST", "getInstanceId failed", task.getException());
+                            Log.i(StringUtil.TAG, "getInstanceId failed", task.getException());
                             return;
                         }
                         // Get new Instance ID token
                         String token = task.getResult().getToken();
-                        Log.i("TEST", "myFcmToken: " + token);
+                        Log.i(StringUtil.TAG, "myFcmToken: " + token);
                         UserPref.setFcmToken(act, token);
                         fcm_token = token.replace("%3", ":");
                     }
@@ -265,7 +265,11 @@ public class SplashAct extends BaseAct {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (
                     checkSelfPermission(android.Manifest.permission.WRITE_CONTACTS) != PackageManager.PERMISSION_GRANTED ||
-                            checkSelfPermission(android.Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED
+                            checkSelfPermission(android.Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED ||
+                            checkSelfPermission(android.Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED ||
+                            checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                            checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                            checkSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
             ) {
                 return false;
             } else {

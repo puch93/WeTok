@@ -61,7 +61,6 @@ public class PermissionAct extends AppCompatActivity {
         ReqBasic server = new ReqBasic(act, NetUrls.ADDRESS) {
             @Override
             public void onAfter(int resultCode, HttpResult resultData) {
-                Log.i(StringUtil.TAG, "getTerms:  " + resultData.getResult() + "\ncode: " + resultCode);
 
                 if (resultData.getResult() != null) {
                     try {
@@ -84,7 +83,7 @@ public class PermissionAct extends AppCompatActivity {
         };
 
         server.setTag("Terms");
-        server.addParams("dbControl", "getTerm");
+        server.addParams("dbControl", NetUrls.GET_TERM);
         server.addParams("type", type);
         server.execute(true, false);
     }
@@ -115,7 +114,11 @@ public class PermissionAct extends AppCompatActivity {
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
             requestPermissions(new String[]{
                     Manifest.permission.WRITE_CONTACTS,
-                    Manifest.permission.READ_CONTACTS
+                    Manifest.permission.READ_CONTACTS,
+                    Manifest.permission.READ_PHONE_STATE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.CAMERA
             },0);
         }
     }
@@ -125,9 +128,12 @@ public class PermissionAct extends AppCompatActivity {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (
-
                     checkSelfPermission(Manifest.permission.WRITE_CONTACTS) != PackageManager.PERMISSION_GRANTED ||
-                            checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED
+                            checkSelfPermission(Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED ||
+                            checkSelfPermission(Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED ||
+                            checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                            checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+                            checkSelfPermission(Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
             ) {
                 finish();
                 finishAffinity();

@@ -9,8 +9,16 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import kr.co.core.wetok.R;
 import kr.co.core.wetok.databinding.ActivityNameBinding;
+import kr.co.core.wetok.preference.UserPref;
+import kr.co.core.wetok.server.ReqBasic;
+import kr.co.core.wetok.server.netUtil.HttpResult;
+import kr.co.core.wetok.server.netUtil.NetUrls;
+import kr.co.core.wetok.util.Common;
 
 public class NameAct extends AppCompatActivity {
     ActivityNameBinding binding;
@@ -25,6 +33,37 @@ public class NameAct extends AppCompatActivity {
         act = this;
 
         setActionBar();
+    }
+
+    private void setName() {
+        ReqBasic server = new ReqBasic(act, NetUrls.ADDRESS) {
+            @Override
+            public void onAfter(int resultCode, HttpResult resultData) {
+                if (resultData.getResult() != null) {
+                    try {
+                        JSONObject jo = new JSONObject(resultData.getResult());
+
+                        if(jo.getString("result").equalsIgnoreCase("Y")) {
+                            finish();
+                        } else {
+
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Common.showToastNetwork(act);
+                    }
+                } else {
+                    Common.showToastNetwork(act);
+                }
+            }
+        };
+
+        server.setTag("Set Name");
+        server.addParams("dbControl", NetUrls.SET_PROFILE_NAME);
+        server.addParams("m_idx", UserPref.getMidx(act));
+        server.addParams("m_name", binding.etName.getText().toString());
+        server.execute(true, false);
     }
 
     @Override

@@ -114,7 +114,7 @@ public class RequestConnection {
                 totalResultText += line;
             }
             resultString = totalResultText.toString();
-//            Log.i("TEST_HOME", "resultString: " + resultString);
+//            Log.i(StringUtil.TAG, "resultString: " + resultString);
 
         } catch (MalformedURLException e) {
             e.printStackTrace();

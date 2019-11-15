@@ -20,9 +20,16 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import kr.co.core.wetok.R;
+import kr.co.core.wetok.activity.FindPwAct;
 import kr.co.core.wetok.databinding.FragmentFind02Binding;
 import kr.co.core.wetok.fragment.BaseFrag;
+import kr.co.core.wetok.server.ReqBasic;
+import kr.co.core.wetok.server.netUtil.HttpResult;
+import kr.co.core.wetok.server.netUtil.NetUrls;
 import kr.co.core.wetok.util.Common;
 
 public class Find02Frag extends BaseFrag implements View.OnClickListener {
@@ -43,6 +50,37 @@ public class Find02Frag extends BaseFrag implements View.OnClickListener {
         binding.etPwConfirm.addTextChangedListener(textWatcher);
 
         return binding.getRoot();
+    }
+
+    private void setPassword() {
+        ReqBasic server = new ReqBasic(act, NetUrls.ADDRESS) {
+            @Override
+            public void onAfter(int resultCode, HttpResult resultData) {
+                if (resultData.getResult() != null) {
+                    try {
+                        JSONObject jo = new JSONObject(resultData.getResult());
+
+                        if(jo.getString("result").equalsIgnoreCase("Y")) {
+                            showDialog();
+                        } else {
+                            Common.showToast(act, getString(R.string.find_check_pw_warning));
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Common.showToastNetwork(act);
+                    }
+                } else {
+                    Common.showToastNetwork(act);
+                }
+            }
+        };
+
+        server.setTag("Modify Password");
+        server.addParams("dbControl", NetUrls.SET_MODIFY_PW);
+        server.addParams("pw", binding.etPw.getText().toString());
+        server.addParams("pw_confirm", binding.etPwConfirm.getText().toString());
+        server.execute(true, false);
     }
 
     private TextWatcher textWatcher = new TextWatcher() {

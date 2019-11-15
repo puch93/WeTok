@@ -16,6 +16,9 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.lang.reflect.Field;
 
 import kr.co.core.wetok.R;
@@ -23,6 +26,9 @@ import kr.co.core.wetok.activity.FindPwAct;
 import kr.co.core.wetok.adapter.WriteSpinnerAdapter;
 import kr.co.core.wetok.databinding.FragmentFind01Binding;
 import kr.co.core.wetok.fragment.BaseFrag;
+import kr.co.core.wetok.server.ReqBasic;
+import kr.co.core.wetok.server.netUtil.HttpResult;
+import kr.co.core.wetok.server.netUtil.NetUrls;
 import kr.co.core.wetok.util.Common;
 import kr.co.core.wetok.util.CustomSpinner;
 
@@ -49,6 +55,40 @@ public class Find01Frag extends BaseFrag implements View.OnClickListener {
 
         return binding.getRoot();
     }
+
+    private void setCheckPw() {
+        ReqBasic server = new ReqBasic(act, NetUrls.ADDRESS) {
+            @Override
+            public void onAfter(int resultCode, HttpResult resultData) {
+                if (resultData.getResult() != null) {
+                    try {
+                        JSONObject jo = new JSONObject(resultData.getResult());
+
+                        if(jo.getString("result").equalsIgnoreCase("Y")) {
+                            ((FindPwAct) act).replaceFragment(new Find02Frag());
+                        } else {
+                            Common.showToast(act, getString(R.string.find_check_pw_warning));
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Common.showToastNetwork(act);
+                    }
+                } else {
+                    Common.showToastNetwork(act);
+                }
+            }
+        };
+
+        String hp = binding.spinner.getSelectedItem().toString() + binding.etNumber;
+
+        server.setTag("Check Password");
+        server.addParams("dbControl", NetUrls.CHECK_FIND_PW);
+        server.addParams("m_id", binding.etId.getText().toString());
+        server.addParams("m_hp", hp);
+        server.execute(true, false);
+    }
+
 
     private TextWatcher textWatcher = new TextWatcher() {
         @Override
@@ -134,6 +174,7 @@ public class Find01Frag extends BaseFrag implements View.OnClickListener {
                 return;
             }
 
+//            setCheckPw();
             ((FindPwAct) act).replaceFragment(new Find02Frag());
         }
     }

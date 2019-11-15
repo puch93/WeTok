@@ -8,6 +8,15 @@
     <string name="charm">부적선물</string>
     <string name="friend_add">친구 추가</string>
 
+    <string name="toast_network">네트워크 상태를 확인해주세요</string>
+    <string name="toast_develop">현재 개발중인 기능입니다</string>
+    
+    <string name="ago_seconds">초전</string>
+    <string name="ago_minutes">분전</string>
+    <string name="ago_hours">시간전</string>
+    <string name="ago_days">일전</string>
+    <string name="ago_months">달전</string>
+    <string name="ago_years">년전</string>
 
     <!-- activity_chat -->
     <string name="act_chat_hint">메세지를 입력하세요</string>
@@ -56,6 +65,9 @@
     <!-- fragment_join_01 -->
     <string name="frag_join01_hint">아이디를 입력해주세요</string>
     <string name="frag_join01_explanation">시용하실 아이디를 입력하세요</string>
+    <!-- code -->
+    <string name="join_id_check_warning01">이미 존재하는 아이디입니다.</string>
+    <string name="join_id_check_warning02">아이디를 입력해주세요</string>
 
     <!-- fragment_join_02 -->
     <string name="frag_join02_hint">비밀번호를 입력해주세요</string>
@@ -63,7 +75,8 @@
 
     <!-- fragment_join_03 -->
     <string name="frag_join03_hint">이름을 입력해주세요</string>
-    <string name="frag_join03_explanation">사용하실 이름과 태어난 년도를 입력하세요</string>
+    <string name="frag_join03_explanation01">사용하실 이름과 태어난 년도를 입력하세요</string>
+    <string name="frag_join03_explanation02">사용하실 프로필 사진을 등록하세요</string>
 
     <!-- fragment_join_04 -->
     <string name="frag_join04_explanation">축하합니다!\n가입이 완료 되었습니다!</string>
@@ -102,7 +115,7 @@
     <!-- activity_permission -->
     <string name="act_permission_title">접근권한 허용</string>
     <string name="act_permission_notice01">위톡 서비스를 이용하기 위해</string>
-    <string name="act_permission_notice02">다음과 같은 </string>
+    <string name="act_permission_notice02">다음과 같은&#160;</string>
     <string name="act_permission_notice03">권한허용</string>
     <string name="act_permission_notice04">이 필요합니다.</string>
     <string name="act_permission_contents_title">필수 접근 권한</string>
@@ -177,15 +190,13 @@
 
     <!-- fragment_find_01 -->
     <!-- layout -->
-    <!--    <string name="frag_find01_auth">인증번호 받기</string>-->
-    <!--    <string name="frag_find01_reauth">인증번호 재전송</string>-->
     <string name="frag_find01_id_hint">아이디를 입력해주세요</string>
     <string name="frag_find01_number_hint">휴대폰 번호를 입력해주세요</string>
     <string name="frag_find01_auth_hint">인증번호 4자리를 입력해주세요</string>
     <!-- code -->
     <string name="find_name_warning">아이디를 입력해주세요</string>
     <string name="find_number_warning">휴대폰 번호를 입력해주세요</string>
-    <!--    <string name="find_auth_warning">인증번호를 정확히 입력해주세요</string>-->
+    <string name="find_check_pw_warning">해당하는 계정이 없습니다.</string>
 
 
     <!-- fragment_find_02 -->

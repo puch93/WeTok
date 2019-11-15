@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/act_permission_notice01"
                 android:textColor="@color/color_444444"
-                android:textSize="18dp"
+                android:textSize="17dp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -60,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/act_permission_notice02"
                     android:textColor="@color/color_444444"
-                    android:textSize="18dp"
+                    android:textSize="17dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -68,7 +68,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/act_permission_notice03"
                     android:textColor="@color/color_bd3a30"
-                    android:textSize="18dp"
+                    android:textSize="17dp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -76,7 +76,7 @@
                     android:layout_height="wrap_content"
                     android:text="@string/act_permission_notice04"
                     android:textColor="@color/color_444444"
-                    android:textSize="18dp"
+                    android:textSize="17dp"
                     android:textStyle="bold" />
             </LinearLayout>
         </LinearLayout>
@@ -85,7 +85,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="32dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/sh_rectangle"
             android:orientation="vertical">
@@ -109,10 +109,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingLeft="20dp"
-                android:paddingTop="18dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="18dp">
+                android:paddingLeft="15dp"
+                android:paddingTop="15dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -150,10 +150,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:paddingLeft="20dp"
-                android:paddingTop="18dp"
-                android:paddingRight="20dp"
-                android:paddingBottom="18dp">
+                android:paddingLeft="15dp"
+                android:paddingTop="15dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -189,7 +189,7 @@
             android:layout_width="match_parent"
             android:layout_height="57dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="33dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/wt_sw_button"
             android:gravity="center"

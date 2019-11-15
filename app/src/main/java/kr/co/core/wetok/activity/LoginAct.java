@@ -7,11 +7,20 @@ import androidx.databinding.DataBindingUtil;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import kr.co.core.wetok.R;
 import kr.co.core.wetok.databinding.ActivityLoginBinding;
+import kr.co.core.wetok.preference.UserPref;
+import kr.co.core.wetok.server.ReqBasic;
+import kr.co.core.wetok.server.netUtil.HttpResult;
+import kr.co.core.wetok.server.netUtil.NetUrls;
 import kr.co.core.wetok.util.Common;
+import kr.co.core.wetok.util.StringUtil;
 
 public class LoginAct extends AppCompatActivity implements View.OnClickListener {
     ActivityLoginBinding binding;
@@ -27,6 +36,43 @@ public class LoginAct extends AppCompatActivity implements View.OnClickListener 
         act = this;
 
         setClickListener();
+    }
+
+    private void setLogin() {
+        ReqBasic server = new ReqBasic(act, NetUrls.ADDRESS) {
+            @Override
+            public void onAfter(int resultCode, HttpResult resultData) {
+
+                if (resultData.getResult() != null) {
+                    try {
+                        JSONObject jo = new JSONObject(resultData.getResult());
+
+                        if(jo.getString("result").equalsIgnoreCase("Y")) {
+                            String midx = jo.getString("MEMCODE");
+                            startActivity(new Intent(act, MainAct.class));
+                            finish();
+
+                            UserPref.setMidx(act, midx);
+                        } else {
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Common.showToastNetwork(act);
+                    }
+                } else {
+                    Common.showToastNetwork(act);
+                }
+            }
+        };
+
+        server.setTag("Login");
+        server.addParams("dbControl", NetUrls.USER_LOGIN);
+//        server.addParams("m_fcm", UserPref.getFcmToken(act));
+//        server.addParams("m_regi", UserPref.getDeviceId(act));
+        server.addParams("m_id", binding.etId.getText().toString());
+        server.addParams("m_pass", binding.etPw.getText().toString());
+        server.execute(true, true);
     }
 
     private void setClickListener() {
@@ -80,8 +126,7 @@ public class LoginAct extends AppCompatActivity implements View.OnClickListener 
                     return;
                 }
 
-                startActivity(new Intent(act, MainAct.class));
-                finish();
+                setLogin();
                 break;
         }
     }

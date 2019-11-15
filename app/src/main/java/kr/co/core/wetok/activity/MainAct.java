@@ -43,29 +43,7 @@ public class MainAct extends BaseAct implements View.OnClickListener {
         binding.flMenu01.performClick();
         //fcm 토큰 저장
         token = FirebaseInstanceId.getInstance().getToken();
-        Log.e("TEST_HOME", "fcm_token: " + token);
-    }
-
-    private void getTerms() {
-        ReqBasic server = new ReqBasic(act, NetUrls.ADDRESS) {
-            @Override
-            public void onAfter(int resultCode, HttpResult resultData) {
-                Log.i(StringUtil.TAG, "getTerms:  " + resultData.getResult() + "\ncode: " + resultCode);
-
-                if (resultData.getResult() != null) {
-                    try {
-                        JSONObject jo = new JSONObject(resultData.getResult());
-
-                    } catch (JSONException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    Common.showToastNetwork(act);
-                }
-            }
-        };
-
-        server.execute(true, true);
+        Log.e(StringUtil.TAG, "fcm_token: " + token);
     }
 
     private void setClickListener() {

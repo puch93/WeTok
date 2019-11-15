@@ -66,7 +66,7 @@
             android:layout_marginLeft="43dp"
             android:layout_marginRight="43dp"
             android:layout_marginTop="7dp"
-            android:background="@drawable/wt_g_s_button"
+            android:background="@drawable/wt_b_button"
             android:gravity="center"
             android:paddingRight="2dp"
             android:text="@string/dlg_imgload_btn02"

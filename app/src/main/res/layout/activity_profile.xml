@@ -43,16 +43,15 @@
 
 
                 <ImageView
+                    android:id="@+id/iv_background"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/wt_wallpapersat_def_191022"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_height="135dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/wt_wallpapersat_def_191022" />
 
                 <!-- background image button -->
                 <FrameLayout
+                    android:id="@+id/fl_background_img"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right|bottom"
@@ -87,13 +86,16 @@
 
                         <!-- profile image -->
                         <ImageView
+                            android:id="@+id/iv_profile"
                             android:layout_width="115dp"
                             android:layout_height="115dp"
                             android:adjustViewBounds="true"
+                            android:background="@drawable/wt_profile100_def_191022"
                             android:scaleType="centerCrop" />
 
                         <!-- no profile image -->
                         <ImageView
+                            android:id="@+id/iv_profile_none"
                             android:layout_width="115dp"
                             android:layout_height="115dp"
                             android:adjustViewBounds="true"
@@ -102,6 +104,7 @@
 
                     <!-- profile image button -->
                     <FrameLayout
+                        android:id="@+id/fl_profile_img"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right|bottom"
@@ -154,6 +157,7 @@
             android:id="@+id/ll_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="22dp"
@@ -197,6 +201,7 @@
             android:id="@+id/ll_birth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="22dp"
@@ -240,6 +245,7 @@
             android:id="@+id/ll_introduce"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="22dp"
@@ -285,6 +291,7 @@
             android:id="@+id/ll_number"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="22dp"
@@ -328,6 +335,7 @@
             android:id="@+id/ll_id"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="22dp"
@@ -371,6 +379,7 @@
             android:id="@+id/ll_pw"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingLeft="22dp"
@@ -390,9 +399,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
-                android:inputType="textPassword"
                 android:ellipsize="end"
                 android:gravity="right"
+                android:inputType="textPassword"
                 android:singleLine="true"
                 android:text="00000000"
                 android:textColor="@color/color_888888"

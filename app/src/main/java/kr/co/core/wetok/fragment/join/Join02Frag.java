@@ -25,12 +25,15 @@ import kr.co.core.wetok.util.StringUtil;
 public class Join02Frag extends BaseFrag implements View.OnClickListener {
     private FragmentJoin02Binding binding;
     private AppCompatActivity act;
+    private String id;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_join_02, container, false);
         act = (AppCompatActivity) getActivity();
+
+        id = getArguments().getString("id");
 
         binding.tvConfirm.setOnClickListener(this);
 
@@ -55,6 +58,7 @@ public class Join02Frag extends BaseFrag implements View.OnClickListener {
         }
     };
 
+
     private void checkButtonActivation() {
         if (binding.etPw.length() != 0 &&
                 binding.etPwConfirm.length() != 0 &&
@@ -64,6 +68,15 @@ public class Join02Frag extends BaseFrag implements View.OnClickListener {
         } else {
             binding.tvConfirm.setBackgroundResource(R.drawable.wt_btn360_disable_191022);
         }
+    }
+
+    private void nextProcess() {
+        BaseFrag fragment = new Join03Frag();
+        Bundle bundle = new Bundle(1);
+        bundle.putString("id", id);
+        bundle.putString("pw", binding.etPw.getText().toString());
+        fragment.setArguments(bundle);
+        ((JoinAct) act).replaceFragment(fragment);
     }
 
     @Override
@@ -90,7 +103,7 @@ public class Join02Frag extends BaseFrag implements View.OnClickListener {
                 return;
             }
 
-            ((JoinAct) act).replaceFragment(new Join03Frag());
+            nextProcess();
         }
     }
 }

@@ -27,7 +27,7 @@
                 android:layout_gravity="center"
                 android:includeFontPadding="false"
                 android:text="@string/act_find_pw_title"
-                android:textColor="@color/"
+                android:textColor="@color/color_white"
                 android:textSize="19dp"
                 android:textStyle="bold" />
         </androidx.appcompat.widget.Toolbar>
