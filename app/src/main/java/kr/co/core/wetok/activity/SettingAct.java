@@ -13,6 +13,7 @@ import android.view.View;
 
 import kr.co.core.wetok.R;
 import kr.co.core.wetok.databinding.ActivitySettingBinding;
+import kr.co.core.wetok.preference.UserPref;
 import kr.co.core.wetok.util.StringUtil;
 
 public class SettingAct extends AppCompatActivity implements View.OnClickListener {
@@ -42,6 +43,7 @@ public class SettingAct extends AppCompatActivity implements View.OnClickListene
         binding.llTermsPrivate.setOnClickListener(this);
         binding.llTermsUse.setOnClickListener(this);
         binding.llVersion.setOnClickListener(this);
+        binding.llLogout.setOnClickListener(this);
     }
 
     private void setActionBar() {
@@ -71,6 +73,14 @@ public class SettingAct extends AppCompatActivity implements View.OnClickListene
                     intent.putExtra("type", StringUtil.TYPE_TERMS_PRIVATE);
                 }
                 startActivity(intent);
+                break;
+
+            case R.id.ll_logout:
+                UserPref.setAutoLogin(act, false);
+
+                startActivity(new Intent(act, LoginAct.class));
+                MainAct.act.finish();
+                finish();
                 break;
         }
     }

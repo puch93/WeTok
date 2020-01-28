@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <ImageView
@@ -23,7 +24,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lineSpacingExtra="5dp"
-            android:text="안녕하세요. 위톡 운영팀입니다.\n위톡을 사랑해주셔서 감사합니다.\n\n더 나은 서비스로 찾아뵙겠습니다."
+            tools:text="안녕하세요. 위톡 운영팀입니다.\n위톡을 사랑해주셔서 감사합니다.\n\n더 나은 서비스로 찾아뵙겠습니다."
             android:textColor="@color/color_888888"
             android:textSize="16dp" />
 

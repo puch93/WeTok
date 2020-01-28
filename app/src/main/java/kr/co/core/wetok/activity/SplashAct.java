@@ -4,11 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.databinding.DataBindingUtil;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -16,6 +19,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.ContactsContract;
 import android.provider.Settings;
 import android.util.Log;
 import android.view.ContextThemeWrapper;
@@ -26,19 +30,23 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.iid.InstanceIdResult;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
+import io.realm.Realm;
 import kr.co.core.wetok.R;
+import kr.co.core.wetok.data.UserData;
 import kr.co.core.wetok.databinding.ActivitySplashBinding;
 import kr.co.core.wetok.preference.UserPref;
 import kr.co.core.wetok.server.ReqBasic;
 import kr.co.core.wetok.server.netUtil.HttpResult;
 import kr.co.core.wetok.server.netUtil.NetUrls;
 import kr.co.core.wetok.util.Common;
+import kr.co.core.wetok.util.CustomApplication;
 import kr.co.core.wetok.util.StringUtil;
 
 public class SplashAct extends BaseAct {
@@ -51,6 +59,20 @@ public class SplashAct extends BaseAct {
     private Timer timer = new Timer();
     boolean isReady = true;
     String fcm_token, device_version;
+
+
+    /* auto login */
+    String id;
+    String pw;
+    String hp;
+    String intro;
+    String name;
+    String birth;
+    String profile_img;
+    String background_img;
+
+    Realm realm;
+    UserData myInfoFromDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +88,7 @@ public class SplashAct extends BaseAct {
             e.printStackTrace();
         }
 
-        startProgram();
+        checkVersion();
     }
 
     private void startProgram() {
@@ -86,83 +108,53 @@ public class SplashAct extends BaseAct {
 
                 final String res = resultData.getResult();
 
-                if (res != null) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            try {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            if (!StringUtil.isNull(res)) {
                                 JSONObject jo = new JSONObject(res);
-
-                                if (jo.getString("result").equalsIgnoreCase("Y")) {
-                                    String[] version = jo.getString("value").split("\\.");
-                                    String[] version_me = device_version.split("\\.");
-
-                                    for (int i = 0; i < 3; i++) {
-                                        int tmp1 = Integer.parseInt(version[i]);
-                                        int tmp2 = Integer.parseInt(version_me[i]);
-
-                                        if (tmp2 < tmp1) {
-                                            if (i < 2) {
-                                                android.app.AlertDialog.Builder alertDialogBuilder =
-                                                        new android.app.AlertDialog.Builder(new ContextThemeWrapper(act, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert));
-                                                alertDialogBuilder.setTitle("업데이트");
-                                                alertDialogBuilder.setMessage("새로운 버전이 있습니다.")
-                                                        .setPositiveButton("업데이트 바로가기", new DialogInterface.OnClickListener() {
-                                                            @Override
-                                                            public void onClick(DialogInterface dialogInterface, int i) {
-                                                                //TODO 업데이트 관련 프로세스 작성해야함
-                                                                finish();
-                                                            }
-                                                        });
-                                                android.app.AlertDialog alertDialog = alertDialogBuilder.create();
-                                                alertDialog.setCanceledOnTouchOutside(false);
-                                                alertDialog.show();
-
-                                                return;
-                                            } else {
-                                                android.app.AlertDialog.Builder alertDialogBuilder =
-                                                        new android.app.AlertDialog.Builder(new ContextThemeWrapper(act, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert));
-                                                alertDialogBuilder.setTitle("업데이트");
-                                                alertDialogBuilder.setMessage("새로운 버전이 있습니다.")
-                                                        .setPositiveButton("업데이트 바로가기", new DialogInterface.OnClickListener() {
-                                                            @Override
-                                                            public void onClick(DialogInterface dialogInterface, int i) {
-                                                                //TODO 업데이트 관련 프로세스 작성해야함
-                                                                finish();
-                                                            }
-                                                        }).setNegativeButton("기존버전으로 계속하기", new DialogInterface.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(DialogInterface dialog, int which) {
-                                                        startProgram();
-                                                    }
-                                                });
-                                                android.app.AlertDialog alertDialog = alertDialogBuilder.create();
-                                                alertDialog.setCanceledOnTouchOutside(false);
-                                                alertDialog.show();
-
-                                                return;
-                                            }
+                                if (StringUtil.getStr(jo, "result").equalsIgnoreCase("Y")) {
+                                    android.app.AlertDialog.Builder alertDialogBuilder =
+                                            new android.app.AlertDialog.Builder(new ContextThemeWrapper(act, android.R.style.Theme_DeviceDefault_Light_Dialog_Alert));
+                                    alertDialogBuilder.setTitle("업데이트");
+                                    alertDialogBuilder.setMessage("새로운 버전이 있습니다.")
+                                            .setPositiveButton("업데이트 바로가기", new DialogInterface.OnClickListener() {
+                                                @Override
+                                                public void onClick(DialogInterface dialogInterface, int i) {
+                                                    //TODO 관련코드 작성
+                                                    Common.showToast(act, "버전 업데이트하기");
+                                                    startProgram();
+                                                }
+                                            }).setNegativeButton("기존버전으로 계속하기", new DialogInterface.OnClickListener() {
+                                        @Override
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            startProgram();
                                         }
-                                    }
-                                    startProgram();
+                                    });
+                                    android.app.AlertDialog alertDialog = alertDialogBuilder.create();
+                                    alertDialog.setCanceledOnTouchOutside(false);
+                                    alertDialog.show();
                                 } else {
                                     startProgram();
                                 }
-
-                            } catch (JSONException e) {
-                                Common.showToastNetwork(act);
-                                e.printStackTrace();
+                            } else {
+                                startProgram();
                             }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
-                    });
-                } else {
-                    Common.showToastNetwork(act);
-                }
+                    }
+                });
             }
         };
 
         server.setTag("App Version");
+        server.addParams("siteUrl", NetUrls.SITEURL);
+        server.addParams("CONNECTCODE", "APP");
+
         server.addParams("dbControl", NetUrls.GET_VERSION);
+        server.addParams("thisVer", device_version);
         server.execute(true, false);
     }
 
@@ -249,9 +241,14 @@ public class SplashAct extends BaseAct {
                     public void run() {
                         if (fcm_token != null && isReady) {
                             isReady = false;
-//                            loginInfo();
-                            startActivity(new Intent(act, LoginAct.class));
-                            finish();
+
+                            if (UserPref.getAutoLogin(act)) {
+                                setAutoLogin();
+                            } else {
+                                startActivity(new Intent(act, LoginAct.class));
+                                finish();
+                            }
+
                             timer.cancel();
                         }
                     }
@@ -261,6 +258,7 @@ public class SplashAct extends BaseAct {
         timer.schedule(adTask, 0, 1000);
     }
 
+
     private boolean checkPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (
@@ -269,7 +267,8 @@ public class SplashAct extends BaseAct {
                             checkSelfPermission(android.Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED ||
                             checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
                             checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
-                            checkSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
+                            checkSelfPermission(android.Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED ||
+                            checkSelfPermission(Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED
             ) {
                 return false;
             } else {
@@ -301,5 +300,266 @@ public class SplashAct extends BaseAct {
                 checkSetting();
                 break;
         }
+    }
+
+
+    /* auto login */
+    private void setAutoLogin() {
+        ReqBasic server = new ReqBasic(act, NetUrls.ADDRESS) {
+            @Override
+            public void onAfter(int resultCode, HttpResult resultData) {
+
+                if (resultData.getResult() != null) {
+                    try {
+                        JSONObject jo = new JSONObject(resultData.getResult());
+
+                        if (jo.getString("result").equalsIgnoreCase("Y")) {
+                            // set midx
+                            UserPref.setMidx(act, jo.getString("MEMCODE"));
+
+                            // set auto login
+                            UserPref.setAutoLogin(act, true);
+
+                            getMyInfo();
+                        } else {
+
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Common.showToastNetwork(act);
+                    }
+                } else {
+                    Common.showToastNetwork(act);
+                }
+            }
+        };
+
+        server.setTag("Auto Login");
+        server.addParams("siteUrl", NetUrls.SITEURL);
+        server.addParams("CONNECTCODE", "APP");
+
+        server.addParams("dbControl", NetUrls.USER_LOGIN);
+        server.addParams("m_regi", fcm_token);
+        server.addParams("m_uniq", UserPref.getDeviceId(act));
+        server.addParams("m_id", UserPref.getId(act));
+        server.addParams("m_pass", UserPref.getPw(act));
+        server.execute(true, false);
+    }
+
+    private void getMyInfo() {
+        ReqBasic server = new ReqBasic(act, NetUrls.ADDRESS) {
+            @Override
+            public void onAfter(int resultCode, HttpResult resultData) {
+                if (resultData.getResult() != null) {
+                    try {
+                        JSONObject jo = new JSONObject(resultData.getResult());
+
+                        if (resultData.getResult() != null) {
+                            id = jo.getString("m_id");
+                            pw = jo.getString("m_pass");
+                            hp = jo.getString("m_hp");
+                            intro = jo.getString("m_intro");
+                            name = jo.getString("m_nickname");
+                            birth = jo.getString("m_birthday");
+                            profile_img = jo.getString("m_profile");
+                            background_img = jo.getString("m_background");
+
+                            processDB();
+
+                        } else {
+                            Common.showToastNetwork(act);
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Common.showToastNetwork(act);
+                    }
+                } else {
+                    Common.showToastNetwork(act);
+                }
+            }
+        };
+
+        server.setTag("My Info");
+        server.addParams("siteUrl", NetUrls.SITEURL);
+        server.addParams("CONNECTCODE", "APP");
+        server.addParams("_APP_MEM_IDX", UserPref.getMidx(act));
+
+        server.addParams("dbControl", NetUrls.GET_MY_INFO);
+        server.execute(true, false);
+    }
+
+    private void processDB() {
+        CustomApplication application = (CustomApplication) act.getApplication();
+        application.setFriend_count(null);
+
+        realm = application.getRealmObject();
+
+        myInfoFromDB = realm.where(UserData.class).equalTo("idx_db", "0").findFirst();
+        if (null != myInfoFromDB) {
+            updateDB();
+        } else {
+            writeDB();
+        }
+    }
+
+    private void writeDB() {
+        realm.executeTransactionAsync(new Realm.Transaction() {
+            @Override
+            public void execute(@NonNull Realm realm) {
+                UserData data = realm.createObject(UserData.class, "0");
+                data.setData(UserPref.getMidx(act), id, pw, hp, intro, name, birth, profile_img, background_img);
+            }
+        }, new Realm.Transaction.OnSuccess() {
+            @Override
+            public void onSuccess() {
+                getContacts01(hp);
+            }
+        }, new Realm.Transaction.OnError() {
+            @Override
+            public void onError(Throwable error) {
+                Log.e(StringUtil.TAG, "onError: " + error.getMessage());
+                updateDB();
+            }
+        });
+    }
+
+    private void updateDB() {
+        realm.executeTransactionAsync(new Realm.Transaction() {
+            @Override
+            public void execute(@NonNull Realm realm) {
+                UserData data = realm.where(UserData.class).equalTo("idx_db", "0").findFirst();
+                if (data != null) {
+                    data.setData(UserPref.getMidx(act), id, pw, hp, intro, name, birth, profile_img, background_img);
+                }
+            }
+        }, new Realm.Transaction.OnSuccess() {
+            @Override
+            public void onSuccess() {
+                getContacts01(hp);
+            }
+        }, new Realm.Transaction.OnError() {
+            @Override
+            public void onError(Throwable error) {
+                Log.e(StringUtil.TAG, "updateDB onError: " + error.getMessage());
+            }
+        });
+    }
+
+    private void getContacts01(String hp) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    JSONObject total = new JSONObject();
+                    JSONArray ja = new JSONArray();
+
+                    // 1. Resolver 가져오기(데이터베이스 열어주기)
+                    ContentResolver resolver = getContentResolver();
+
+                    // 2. 전화번호가 저장되어 있는 테이블 주소값(Uri)을 가져오기
+                    Uri phoneUri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+
+                    // 3. 테이블에 정의된 칼럼 가져오기
+                    String[] projection = {ContactsContract.CommonDataKinds.Phone.CONTACT_ID
+                            , ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME
+                            , ContactsContract.CommonDataKinds.Phone.NUMBER};
+
+                    // 4. ContentResolver로 쿼리를 날림 -> resolver 가 provider 에게 쿼리하겠다고 요청
+                    Cursor cursor = resolver.query(phoneUri, projection, null, null, ContactsContract.Data.RAW_CONTACT_ID + " ASC");
+
+                    // 5. 커서로 리턴된다. 반복문을 돌면서 cursor 에 담긴 데이터를 하나씩 추출
+//                    int i = 0;
+                    if (cursor != null) {
+                        while (cursor.moveToNext()) {
+//                            if (i > 4) {
+//                                break;
+//                            }
+//                            i++;
+
+                            JSONObject jo = new JSONObject();
+
+                            // 4.1 이름으로 인덱스를 찾아준다
+                            int idIndex = cursor.getColumnIndex(projection[0]); // 이름을 넣어주면 그 칼럼을 가져와준다.
+                            int nameIndex = cursor.getColumnIndex(projection[1]);
+                            int numberIndex = cursor.getColumnIndex(projection[2]);
+
+                            // 4.2 해당 index 를 사용해서 실제 값을 가져온다.
+                            String id = cursor.getString(idIndex);
+                            String name = cursor.getString(nameIndex);
+                            String number = cursor.getString(numberIndex);
+
+                            Log.e("TEST_HOME", "id: " + id);
+                            Log.e("TEST_HOME", "name: " + name);
+                            Log.e("TEST_HOME", "number: " + number);
+                            Log.e("TEST_HOME", "--------------------------------------------");
+
+
+                            number = number.replace(" ", "");
+                            number = number.replace("-", "");
+                            number = number.replace("//", "");
+
+                            if (!hp.equalsIgnoreCase(number)) {
+                                jo.put("address", number);
+                                ja.put(jo);
+                            }
+                        }
+                    }
+                    // 데이터 계열은 반드시 닫아줘야 한다.
+                    cursor.close();
+                    total.put("address_list", ja);
+
+                    Log.e(StringUtil.TAG, "total(JSONArray): " + total);
+
+                    // send server
+                    setSychronizeNumber(total);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    private void setSychronizeNumber(final JSONObject total) {
+        ReqBasic server = new ReqBasic(act, NetUrls.ADDRESS) {
+            @Override
+            public void onAfter(int resultCode, HttpResult resultData) {
+                if (resultData.getResult() != null) {
+                    try {
+                        JSONObject jo = new JSONObject(resultData.getResult());
+
+                        if (jo.getString("result").equalsIgnoreCase("Y")) {
+                            startActivity(new Intent(act, MainAct.class));
+                            finish();
+                        } else {
+                            startActivity(new Intent(act, MainAct.class));
+                            finish();
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Common.showToastNetwork(act);
+
+                        startActivity(new Intent(act, MainAct.class));
+                        finish();
+                    }
+                } else {
+                    Common.showToastNetwork(act);
+
+                    startActivity(new Intent(act, MainAct.class));
+                    finish();
+                }
+            }
+        };
+
+        server.setTag("Synchro Number");
+        server.addParams("siteUrl", NetUrls.SITEURL);
+        server.addParams("CONNECTCODE", "APP");
+        server.addParams("_APP_MEM_IDX", UserPref.getMidx(act));
+
+        server.addParams("dbControl", NetUrls.SET_FRIEND_SYNC);
+        server.addParams("addr_list", total.toString());
+        server.execute(true, false);
     }
 }

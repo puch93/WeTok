@@ -6,13 +6,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,7 +31,9 @@ import java.lang.reflect.Field;
 
 import kr.co.core.wetok.R;
 import kr.co.core.wetok.adapter.WriteSpinnerAdapter;
+import kr.co.core.wetok.data.UserData;
 import kr.co.core.wetok.databinding.ActivityAddFriendBinding;
+import kr.co.core.wetok.preference.UserPref;
 import kr.co.core.wetok.server.ReqBasic;
 import kr.co.core.wetok.server.netUtil.HttpResult;
 import kr.co.core.wetok.server.netUtil.NetUrls;
@@ -60,10 +73,24 @@ public class AddFriendAct extends AppCompatActivity implements View.OnClickListe
                     try {
                         JSONObject jo = new JSONObject(resultData.getResult());
 
-                        if(jo.getString("result").equalsIgnoreCase("Y")) {
+                        if (jo.getString("result").equalsIgnoreCase("Y")) {
+                            JSONArray ja = jo.getJSONArray("value");
+                            JSONObject job = ja.getJSONObject(0);
 
+                            UserData data = new UserData();
+                            data.setIdx(job.getString("m_idx"));
+                            data.setId(job.getString("m_id"));
+                            data.setPw(job.getString("m_pass"));
+                            data.setHp(job.getString("m_hp"));
+                            data.setIntro(job.getString("m_intro"));
+                            data.setName(job.getString("m_nickname"));
+
+                            data.setProfile_img(job.getString("m_profile"));
+                            data.setBackground_img(job.getString("m_background"));
+
+                            showDialog(data);
                         } else {
-
+                            Common.showToast(act, jo.getString("message"));
                         }
 
                     } catch (JSONException e) {
@@ -76,9 +103,18 @@ public class AddFriendAct extends AppCompatActivity implements View.OnClickListe
             }
         };
 
-        String hp = binding.spinner.getSelectedItem().toString() + binding.etNumber;
+        String hp = "";
+        if(binding.spinner.getSelectedItemPosition() == 0) {
+            hp = binding.etNumber.getText().toString();
+        } else {
+            hp = binding.spinner.getSelectedItem().toString() + binding.etNumber.getText().toString();
+        }
 
         server.setTag("Get From Hp");
+        server.addParams("siteUrl", NetUrls.SITEURL);
+        server.addParams("CONNECTCODE", "APP");
+        server.addParams("_APP_MEM_IDX", UserPref.getMidx(act));
+
         server.addParams("dbControl", NetUrls.GET_FRIEND_FROM_HP);
         server.addParams("y_name", binding.etName.getText().toString());
         server.addParams("y_hp", hp);
@@ -93,10 +129,25 @@ public class AddFriendAct extends AppCompatActivity implements View.OnClickListe
                     try {
                         JSONObject jo = new JSONObject(resultData.getResult());
 
-                        if(jo.getString("result").equalsIgnoreCase("Y")) {
+                        if (jo.getString("result").equalsIgnoreCase("Y")) {
+                            JSONArray ja = jo.getJSONArray("value");
+                            JSONObject job = ja.getJSONObject(0);
+
+                            UserData data = new UserData();
+                            data.setIdx(job.getString("m_idx"));
+                            data.setId(job.getString("m_id"));
+                            data.setPw(job.getString("m_pass"));
+                            data.setHp(job.getString("m_hp"));
+                            data.setIntro(job.getString("m_intro"));
+                            data.setName(job.getString("m_nickname"));
+
+                            data.setProfile_img(job.getString("m_profile"));
+                            data.setBackground_img(job.getString("m_background"));
+
+                            showDialog(data);
 
                         } else {
-
+                            Common.showToast(act, jo.getString("message"));
                         }
 
                     } catch (JSONException e) {
@@ -109,12 +160,94 @@ public class AddFriendAct extends AppCompatActivity implements View.OnClickListe
             }
         };
 
-        String hp = binding.spinner.getSelectedItem().toString() + binding.etNumber;
-
         server.setTag("Get From Id");
+        server.addParams("siteUrl", NetUrls.SITEURL);
+        server.addParams("CONNECTCODE", "APP");
+        server.addParams("_APP_MEM_IDX", UserPref.getMidx(act));
+
         server.addParams("dbControl", NetUrls.GET_FRIEND_FROM_ID);
         server.addParams("y_id", binding.etId.getText().toString());
         server.execute(true, false);
+    }
+
+    private void setFriendAdd(final UserData data) {
+        ReqBasic server = new ReqBasic(act, NetUrls.ADDRESS) {
+            @Override
+            public void onAfter(int resultCode, HttpResult resultData) {
+                if (resultData.getResult() != null) {
+                    try {
+                        JSONObject jo = new JSONObject(resultData.getResult());
+
+                        if(jo.getString("result").equalsIgnoreCase("Y")) {
+                            Common.showToast(act, "친구추가 되었습니다.");
+                            setResult(RESULT_OK);
+                            finish();
+                        } else {
+                            Common.showToast(act, jo.getString("message"));
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Common.showToastNetwork(act);
+                    }
+                } else {
+                    Common.showToastNetwork(act);
+                }
+            }
+        };
+
+        server.setTag("Friend Add");
+        server.addParams("siteUrl", NetUrls.SITEURL);
+        server.addParams("CONNECTCODE", "APP");
+        server.addParams("_APP_MEM_IDX", UserPref.getMidx(act));
+
+        server.addParams("dbControl", "setFriedAdd");
+        server.addParams("y_idx", data.getIdx());
+        server.execute(true, false);
+    }
+
+    private void showDialog(final UserData data) {
+        LayoutInflater layout = LayoutInflater.from(act);
+        View dialogLayout = layout.inflate(R.layout.dialog_friend_add, null);
+        final Dialog dialog = new Dialog(act);
+        dialog.setContentView(dialogLayout);
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+
+        ImageView iv_profile = (ImageView) dialogLayout.findViewById(R.id.iv_profile);
+        TextView tv_name = (TextView) dialogLayout.findViewById(R.id.tv_name);
+        TextView tv_intro = (TextView) dialogLayout.findViewById(R.id.tv_intro);
+        TextView tv_confirm = (TextView) dialogLayout.findViewById(R.id.tv_confirm);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            iv_profile.setClipToOutline(true);
+        }
+
+        // set name
+        tv_name.setText(data.getName());
+
+        // set intro
+        if(StringUtil.isNull(data.getIntro())) {
+            tv_intro.setText(getString(R.string.dlg_friend_add_intro));
+        } else {
+            tv_intro.setText(data.getIntro());
+        }
+
+        // set profile image
+        Glide.with(act)
+                .load(NetUrls.DOMAIN + data.getProfile_img())
+
+                .into(iv_profile);
+
+        // set btn process
+        tv_confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setFriendAdd(data);
+                dialog.dismiss();
+            }
+        });
     }
 
     private void setClickListener() {
@@ -194,8 +327,8 @@ public class AddFriendAct extends AppCompatActivity implements View.OnClickListe
                 binding.llFromId.setSelected(true);
                 binding.llFromNumber.setSelected(false);
 
-                binding.ivFromNumber.setVisibility(View.INVISIBLE);
-                binding.ivFromId.setVisibility(View.VISIBLE);
+//                binding.ivFromNumber.setVisibility(View.INVISIBLE);
+//                binding.ivFromId.setVisibility(View.VISIBLE);
 
                 binding.llFromNumberArea.setVisibility(View.GONE);
                 binding.llFromIdArea.setVisibility(View.VISIBLE);
@@ -205,8 +338,8 @@ public class AddFriendAct extends AppCompatActivity implements View.OnClickListe
                 binding.llFromId.setSelected(false);
                 binding.llFromNumber.setSelected(true);
 
-                binding.ivFromNumber.setVisibility(View.VISIBLE);
-                binding.ivFromId.setVisibility(View.INVISIBLE);
+//                binding.ivFromNumber.setVisibility(View.VISIBLE);
+//                binding.ivFromId.setVisibility(View.INVISIBLE);
 
                 binding.llFromNumberArea.setVisibility(View.VISIBLE);
                 binding.llFromIdArea.setVisibility(View.GONE);
@@ -226,13 +359,13 @@ public class AddFriendAct extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.tv_add_from_hp:
-                if(StringUtil.isNull(binding.etName.getText().toString())) {
-                    Common.showToast(act, "이름을 입력해주세요");
+                if (StringUtil.isNull(binding.etName.getText().toString())) {
+                    Common.showToast(act, getString(R.string.add_friend_warning01));
                     return;
                 }
 
-                if(StringUtil.isNull(binding.etNumber.getText().toString())) {
-                    Common.showToast(act, "휴대폰 번호를 입력해주세요");
+                if (StringUtil.isNull(binding.etNumber.getText().toString())) {
+                    Common.showToast(act, getString(R.string.add_friend_warning02));
                     return;
                 }
 
@@ -240,8 +373,13 @@ public class AddFriendAct extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.tv_add_from_id:
-                if(StringUtil.isNull(binding.etId.getText().toString())) {
-                    Common.showToast(act, "휴대폰 번호를 입력해주세요");
+                if (StringUtil.isNull(binding.etId.getText().toString())) {
+                    Common.showToast(act, getString(R.string.add_friend_warning03));
+                    return;
+                }
+
+                if(binding.etId.getText().toString().equalsIgnoreCase(UserPref.getId(act))) {
+                    Common.showToast(act, getString(R.string.add_friend_warning04));
                     return;
                 }
 

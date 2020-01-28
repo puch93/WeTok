@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/ll_all"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -42,13 +44,29 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp">
 
-                    <ImageView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="36dp"
-                        android:layout_marginRight="36dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/sel_main_btn01" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.1" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/sel_main_btn01" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.1" />
+
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -111,13 +129,29 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp">
 
-                    <ImageView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="36dp"
-                        android:layout_marginRight="36dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/sel_main_btn02" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.1" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/sel_main_btn02" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.1" />
+
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -134,29 +168,24 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:paddingTop="8dp"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1" />
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/tv_read_count"
                         android:layout_width="25dp"
                         android:layout_height="25dp"
                         android:background="@drawable/wt_bg_unreadchat_red_191022"
                         android:gravity="center"
-                        android:visibility="visible">
-
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:includeFontPadding="false"
-                            android:text="1"
-                            android:textColor="@color/color_white"
-                            android:textSize="14dp" />
-                    </LinearLayout>
+                        android:includeFontPadding="false"
+                        android:text="1"
+                        android:textColor="@color/color_white"
+                        android:textSize="14dp"
+                        android:visibility="visible" />
 
                     <TextView
                         android:layout_width="0dp"
@@ -180,13 +209,29 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp">
 
-                    <ImageView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="36dp"
-                        android:layout_marginRight="36dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/sel_main_btn03" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.1" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/sel_main_btn03" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.1" />
+
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -249,13 +294,29 @@
                     android:paddingTop="10dp"
                     android:paddingBottom="10dp">
 
-                    <ImageView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="36dp"
-                        android:layout_marginRight="36dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/sel_main_btn04" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.1" />
+
+                        <ImageView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/sel_main_btn04" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1.1" />
+
+                    </LinearLayout>
 
                     <TextView
                         android:layout_width="wrap_content"

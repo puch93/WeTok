@@ -4,6 +4,7 @@ public class NetUrls {
 //    public static final String DOMAIN = "http://app.yeobo.co.kr";
     public static final String DOMAIN = "http://wetalk.alrigo.co.kr";
     public static final String ADDRESS = DOMAIN + "/lib/control.siso";       // 로그인
+    public static final String SITEURL = "wetalk.alrigo.co.kr";
 //    public static final String ADDRESS = DOMAIN;       // 로그인
 
     /* check */
@@ -13,6 +14,7 @@ public class NetUrls {
 
     /* set */
     public static final String SET_MODIFY_PW = "setUserModifyPw";
+    public static final String SET_MODIFY_PW_MEMBER = "setUserModifyPwConfirm";
     public static final String SET_PROFILE_NAME = "setUserModifyName";
     public static final String SET_PROFILE_BIRTH = "setUserModifyBirth";
     public static final String SET_PROFILE_INTRO = "setUserModifyIntro";
@@ -22,6 +24,7 @@ public class NetUrls {
     public static final String SET_STORY = "setStoryContents";
     public static final String SET_STORY_DELETE = "setStoryDelete";
     public static final String SET_FRIEND_SYNC = "setFriendCheckAuto";
+    public static final String SET_CHAT_ALLREAD = "setNoteAllRead";
 
     /* get */
     public static final String GET_FRIEND_LIST = "getFriendList";
@@ -33,7 +36,7 @@ public class NetUrls {
     public static final String GET_CHECK_EXIST = "getChatExist";
     public static final String GET_NOTICE = "getNotice";
     public static final String GET_TERM = "getTerm";
-    public static final String GET_VERSION = "getAppVersion";
+    public static final String GET_VERSION = "setPlaystorUpdateCheck";
 
     /* others */
     public static final String USER_REGI = "setMemberUserRegi";

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/wt_icon_search_wh_191022"
+        android:title="Search"
+        app:showAsAction="always" />
+    <!--app:actionViewClass="androidx.appcompat.widget.SearchView"-->
+    <!--app:showAsAction="ifRoom|collapseActionView" />-->
+
+    <item
+        android:id="@+id/action_add_friend"
+        android:icon="@drawable/wt_icon_addfrnds22_wh_191022"
+        android:title="Add"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_add_chat"
+        android:icon="@drawable/wt_icon_addtalk_wh_191205"
+        android:title="AddChat"
+        app:showAsAction="always" />
+
+</menu>

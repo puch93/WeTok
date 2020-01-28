@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="right"
+    android:orientation="horizontal"
+    android:paddingTop="4dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="4dp">
+
+    <TextView
+        android:id="@+id/tv_is_read"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="1dp"
+        android:includeFontPadding="false"
+        android:text="1"
+        android:textColor="@color/color_248fc0"
+        android:textSize="11dp" />
+
+    <TextView
+        android:id="@+id/tv_send_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="1dp"
+        android:includeFontPadding="false"
+        tools:text="오전 09:05"
+        android:textColor="@color/color_64717c"
+        android:textSize="11dp" />
+    <!--android:textColor="@color/color_aaaaaa"-->
+
+    <!--8dp-->
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/wt_chatbox01_191022"
+        android:paddingLeft="12dp"
+        android:paddingTop="7dp"
+        android:gravity="center_vertical"
+        android:maxWidth="210dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoLink="all"
+            tools:text="취소됨"
+            android:textColor="@color/color_1e1e1e"
+            android:textSize="15dp"/>
+
+        <ImageView
+            android:id="@+id/iv_call_state"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginLeft="7dp"
+            android:adjustViewBounds="true"
+            android:src="@drawable/voice_call"/>
+    </LinearLayout>
+</LinearLayout>

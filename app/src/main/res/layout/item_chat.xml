@@ -2,38 +2,32 @@
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:background="@color/color_white"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
 
     <LinearLayout
+        android:id="@+id/ll_all_area"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/color_white"
+        android:background="?android:attr/selectableItemBackground"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingLeft="23dp"
+        android:paddingLeft="16dp"
         android:paddingTop="12dp"
-        android:paddingRight="23dp"
+        android:paddingRight="16dp"
         android:paddingBottom="12dp">
 
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
 
-            <ImageView
-                android:layout_width="52dp"
-                android:layout_height="52dp"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop" />
+        <ImageView
+            android:id="@+id/iv_profile"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/wt_profile156_def_191126"
+            android:scaleType="centerCrop" />
 
-            <ImageView
-                android:layout_width="52dp"
-                android:layout_height="52dp"
-                android:adjustViewBounds="true"
-                android:scaleType="centerCrop"
-                android:src="@drawable/wt_thmbn_chatimg46_191022" />
-        </FrameLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -50,16 +44,17 @@
                 android:paddingLeft="14dp">
 
                 <TextView
+                    android:id="@+id/tv_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ellipsize="end"
                     android:singleLine="true"
                     android:text="김가나"
                     android:textColor="@color/color_444444"
-                    android:textSize="16dp"
-                    android:textStyle="bold" />
+                    android:textSize="17dp" />
 
                 <TextView
+                    android:id="@+id/tv_contents"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="3dp"
@@ -78,30 +73,27 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/tv_send_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:includeFontPadding="false"
                     android:text="오전 09:01"
                     android:textColor="@color/color_aaaaaa"
-                    android:textSize="13dp" />
+                    android:textSize="11dp" />
 
-                <LinearLayout
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_marginTop="3dp"
+
+                <TextView
+                    android:id="@+id/tv_read_count"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:layout_marginTop="5dp"
                     android:background="@drawable/wt_bg_unreadchat_red_191022"
                     android:gravity="center"
-                    android:visibility="visible">
+                    android:includeFontPadding="false"
+                    android:text="0"
+                    android:textColor="@color/color_white"
+                    android:textSize="12dp" />
 
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:includeFontPadding="false"
-                        android:text="1"
-                        android:textColor="@color/color_white"
-                        android:textSize="13dp" />
-                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>

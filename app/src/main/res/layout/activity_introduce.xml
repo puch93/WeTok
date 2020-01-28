@@ -75,6 +75,7 @@
         </LinearLayout>
 
         <TextView
+            android:id="@+id/tv_confirm"
             android:layout_width="match_parent"
             android:layout_height="68dp"
             android:background="@drawable/wt_btn360_enable_191022"

@@ -23,6 +23,7 @@
                 android:hint="@string/frag_join01_hint"
                 android:paddingLeft="13dp"
                 android:singleLine="true"
+                android:maxLength="12"
                 android:textColor="@color/color_222222"
                 android:textColorHint="@color/color_aaaaaa"
                 android:textSize="14dp" />

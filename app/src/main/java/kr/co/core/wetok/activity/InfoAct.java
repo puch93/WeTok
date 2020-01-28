@@ -26,6 +26,8 @@ public class InfoAct extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_info, null);
 
+        binding.tvInformation.setText(getIntent().getStringExtra("value"));
+
         String type = getIntent().getStringExtra("type");
         if(!StringUtil.isNull(type)) {
             if(type.equalsIgnoreCase(StringUtil.TYPE_INFO_ID)) {

@@ -3,6 +3,7 @@ package kr.co.core.wetok.activity;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -20,6 +21,7 @@ import kr.co.core.wetok.server.ReqBasic;
 import kr.co.core.wetok.server.netUtil.HttpResult;
 import kr.co.core.wetok.server.netUtil.NetUrls;
 import kr.co.core.wetok.util.Common;
+import kr.co.core.wetok.util.StringUtil;
 
 public class IntroduceAct extends AppCompatActivity {
     ActivityIntroduceBinding binding;
@@ -34,6 +36,20 @@ public class IntroduceAct extends AppCompatActivity {
         act = this;
 
         setActionBar();
+
+        binding.etIntroduce.setText(getIntent().getStringExtra("intro"));
+
+        binding.tvConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(StringUtil.isNull(binding.etIntroduce.getText().toString())) {
+                    Common.showToast(act, "소개글을 입력해주세요");
+                    return;
+                }
+
+                setIntro();
+            }
+        });
     }
 
     private void setIntro() {
@@ -45,6 +61,7 @@ public class IntroduceAct extends AppCompatActivity {
                         JSONObject jo = new JSONObject(resultData.getResult());
 
                         if(jo.getString("result").equalsIgnoreCase("Y")) {
+                            setResult(RESULT_OK);
                             finish();
                         } else {
 
@@ -61,8 +78,11 @@ public class IntroduceAct extends AppCompatActivity {
         };
 
         server.setTag("Set Intro");
+        server.addParams("siteUrl", NetUrls.SITEURL);
+        server.addParams("CONNECTCODE", "APP");
+        server.addParams("_APP_MEM_IDX", UserPref.getMidx(act));
+
         server.addParams("dbControl", NetUrls.SET_PROFILE_INTRO);
-        server.addParams("m_idx", UserPref.getMidx(act));
         server.addParams("m_intro", binding.etIntroduce.getText().toString());
         server.execute(true, false);
     }

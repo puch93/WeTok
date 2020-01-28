@@ -20,6 +20,28 @@
         <item name="actionButtonStyle">@style/ActionButton</item>
     </style>
 
+    <style name="ToolbarThemeSearch" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorControlNormal">@android:color/white</item>
+    </style>
+
+    <!-- other toolbar button size -->
+    <style name="ActionOtherButton" parent="@android:style/Widget.ActionButton">
+        <item name="android:minWidth">20dp</item>
+        <item name="android:maxWidth">20dp</item>
+        <item name="android:width">20dp</item>
+    </style>
+    <style name="ToolbarOtherTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="colorControlNormal">@android:color/white</item>
+        <item name="android:actionButtonStyle">@style/ActionButton</item>
+        <item name="actionButtonStyle">@style/ActionButton</item>
+    </style>
+
+    <!-- edit text style -->
+    <style name="EditTextStyle" parent="Widget.AppCompat.EditText">
+<!--        <item name="android:textCursorDrawable">@color/color_white</item>-->
+        <item name="colorAccent">@color/color_white</item>
+    </style>
+
     <!-- spinner style -->
     <style name="SpinnerStyle" parent="Widget.AppCompat.ListView.DropDown">
         <item name="android:divider">@color/color_aaaaaa</item>
@@ -38,5 +60,18 @@
         <item name="windowNoTitle">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowIsFloating">false</item>
+    </style>
+
+
+    <style name="Theme.Slidr.Slidable" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowTranslucentStatus">false</item>
+        <item name="android:windowTranslucentNavigation">false</item>
+
+        <!-- 상태바 색상 -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+
+        <!-- 백그라운드 투명하게 -->
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
     </style>
 </resources>

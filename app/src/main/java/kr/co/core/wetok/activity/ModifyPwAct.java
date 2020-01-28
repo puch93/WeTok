@@ -12,12 +12,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentTransaction;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import kr.co.core.wetok.R;
 import kr.co.core.wetok.databinding.ActivityFindPwBinding;
 import kr.co.core.wetok.databinding.ActivityModifyPwBinding;
 import kr.co.core.wetok.fragment.BaseFrag;
 import kr.co.core.wetok.fragment.find.Find01Frag;
 import kr.co.core.wetok.fragment.join.Join03Frag;
+import kr.co.core.wetok.preference.UserPref;
+import kr.co.core.wetok.server.ReqBasic;
+import kr.co.core.wetok.server.netUtil.HttpResult;
+import kr.co.core.wetok.server.netUtil.NetUrls;
 import kr.co.core.wetok.util.Common;
 
 public class ModifyPwAct extends AppCompatActivity implements View.OnClickListener {
@@ -32,10 +39,54 @@ public class ModifyPwAct extends AppCompatActivity implements View.OnClickListen
         binding = DataBindingUtil.setContentView(this, R.layout.activity_modify_pw, null);
         act = this;
 
+        binding.etPwOld.addTextChangedListener(textWatcher);
         binding.etPw.addTextChangedListener(textWatcher);
         binding.etPwConfirm.addTextChangedListener(textWatcher);
 
+        binding.tvConfirm.setOnClickListener(this);
+
         setActionBar();
+    }
+
+    private void setCheckPassword() {
+        ReqBasic server = new ReqBasic(act, NetUrls.ADDRESS) {
+            @Override
+            public void onAfter(int resultCode, HttpResult resultData) {
+                if (resultData.getResult() != null) {
+                    try {
+                        JSONObject jo = new JSONObject(resultData.getResult());
+                        String message = jo.getString("message");
+                        String result = jo.getString("result");
+                        if(result.equalsIgnoreCase("Y")) {
+                            Common.showToast(act, message);
+
+                            UserPref.setPw(act, binding.etPw.getText().toString());
+                            setResult(RESULT_OK);
+                            finish();
+                        } else {
+                            Common.showToast(act, message);
+                        }
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Common.showToastNetwork(act);
+                    }
+                } else {
+                    Common.showToastNetwork(act);
+                }
+            }
+        };
+
+        server.setTag("Modify Password");
+        server.addParams("siteUrl", NetUrls.SITEURL);
+        server.addParams("CONNECTCODE", "APP");
+        server.addParams("_APP_MEM_IDX", UserPref.getMidx(act));
+
+        server.addParams("dbControl", NetUrls.SET_MODIFY_PW_MEMBER);
+        server.addParams("old_pw", binding.etPwOld.getText().toString());
+        server.addParams("pw", binding.etPw.getText().toString());
+        server.addParams("pw_confirm", binding.etPwConfirm.getText().toString());
+        server.execute(true, false);
     }
 
     private TextWatcher textWatcher = new TextWatcher() {
@@ -69,7 +120,8 @@ public class ModifyPwAct extends AppCompatActivity implements View.OnClickListen
     }
 
     private void checkButtonActivation() {
-        if (binding.etPw.length() != 0 &&
+        if (binding.etPwOld.length() != 0 &&
+                binding.etPw.length() != 0 &&
                 binding.etPwConfirm.length() != 0 &&
                 binding.etPw.getText().toString().equalsIgnoreCase(binding.etPwConfirm.getText().toString())
         ) {
@@ -82,6 +134,11 @@ public class ModifyPwAct extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.tv_confirm) {
+            if (binding.etPwOld.length() == 0) {
+                Common.showToast(act, getString(R.string.find_pw_old_warning));
+                return;
+            }
+
             if (binding.etPw.length() == 0) {
                 Common.showToast(act, getString(R.string.find_pw_warning));
                 return;
@@ -92,7 +149,8 @@ public class ModifyPwAct extends AppCompatActivity implements View.OnClickListen
                 return;
             }
 
-            if (binding.etPw.length() < 8 || binding.etPw.length() > 16 &&
+            if (binding.etPwOld.length() < 8 || binding.etPwOld.length() > 16 &&
+                    binding.etPw.length() < 8 || binding.etPw.length() > 16 &&
                     binding.etPwConfirm.length() < 8 || binding.etPwConfirm.length() > 16) {
                 Common.showToast(act, getString(R.string.find_pw_length_warning));
                 return;
@@ -103,8 +161,7 @@ public class ModifyPwAct extends AppCompatActivity implements View.OnClickListen
                 return;
             }
 
-            Common.showToast(act, "비밀번호 변경완료");
-            finish();
+            setCheckPassword();
         }
     }
 }

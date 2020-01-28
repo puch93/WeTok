@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -19,6 +20,7 @@ import kr.co.core.wetok.server.ReqBasic;
 import kr.co.core.wetok.server.netUtil.HttpResult;
 import kr.co.core.wetok.server.netUtil.NetUrls;
 import kr.co.core.wetok.util.Common;
+import kr.co.core.wetok.util.StringUtil;
 
 public class NameAct extends AppCompatActivity {
     ActivityNameBinding binding;
@@ -33,6 +35,19 @@ public class NameAct extends AppCompatActivity {
         act = this;
 
         setActionBar();
+
+        binding.etName.setText(getIntent().getStringExtra("name"));
+
+        binding.tvConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(StringUtil.isNull(binding.etName.getText().toString())) {
+                    Common.showToast(act, "닉네임을 입력해주세요");
+                    return;
+                }
+                setName();
+            }
+        });
     }
 
     private void setName() {
@@ -44,6 +59,7 @@ public class NameAct extends AppCompatActivity {
                         JSONObject jo = new JSONObject(resultData.getResult());
 
                         if(jo.getString("result").equalsIgnoreCase("Y")) {
+                            setResult(RESULT_OK);
                             finish();
                         } else {
 
@@ -60,8 +76,11 @@ public class NameAct extends AppCompatActivity {
         };
 
         server.setTag("Set Name");
+        server.addParams("siteUrl", NetUrls.SITEURL);
+        server.addParams("CONNECTCODE", "APP");
+        server.addParams("_APP_MEM_IDX", UserPref.getMidx(act));
+
         server.addParams("dbControl", NetUrls.SET_PROFILE_NAME);
-        server.addParams("m_idx", UserPref.getMidx(act));
         server.addParams("m_name", binding.etName.getText().toString());
         server.execute(true, false);
     }

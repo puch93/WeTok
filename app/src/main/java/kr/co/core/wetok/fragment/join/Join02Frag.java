@@ -14,6 +14,8 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import java.util.regex.Pattern;
+
 import kr.co.core.wetok.R;
 import kr.co.core.wetok.activity.JoinAct;
 import kr.co.core.wetok.databinding.FragmentJoin01Binding;
@@ -62,7 +64,9 @@ public class Join02Frag extends BaseFrag implements View.OnClickListener {
     private void checkButtonActivation() {
         if (binding.etPw.length() != 0 &&
                 binding.etPwConfirm.length() != 0 &&
-                binding.etPw.getText().toString().equalsIgnoreCase(binding.etPwConfirm.getText().toString())
+                binding.etPw.getText().toString().equalsIgnoreCase(binding.etPwConfirm.getText().toString()) &&
+                binding.etPw.length() >= 8 &&
+                Pattern.matches("^[a-zA-Z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?~`]+$", binding.etPw.getText().toString())
         ) {
             binding.tvConfirm.setBackgroundResource(R.drawable.wt_btn360_enable_191022);
         } else {
@@ -72,34 +76,39 @@ public class Join02Frag extends BaseFrag implements View.OnClickListener {
 
     private void nextProcess() {
         BaseFrag fragment = new Join03Frag();
+
         Bundle bundle = new Bundle(1);
         bundle.putString("id", id);
         bundle.putString("pw", binding.etPw.getText().toString());
         fragment.setArguments(bundle);
+
         ((JoinAct) act).replaceFragment(fragment);
     }
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.tv_confirm) {
-            if (binding.etPw.length() == 0) {
-                Common.showToast(act, getString(R.string.find_pw_warning));
+            // 비밀번호 길이 0 검사
+            if (binding.etPw.length() == 0 || binding.etPwConfirm.length() == 0) {
+                Common.showToast(act, getString(R.string.join_pw_length_warning));
                 return;
             }
 
-            if (binding.etPwConfirm.length() == 0) {
-                Common.showToast(act, getString(R.string.find_pw_confirm_warning));
+            // 비밀번호 길이 검사
+            if (binding.etPw.length() < 8 && binding.etPwConfirm.length() < 8) {
+                Common.showToast(act, getString(R.string.join_pw_length_warning));
                 return;
             }
 
-            if (binding.etPw.length() < 8 || binding.etPw.length() > 16 &&
-                    binding.etPwConfirm.length() < 8 || binding.etPwConfirm.length() > 16) {
-                Common.showToast(act, getString(R.string.find_pw_length_warning));
-                return;
-            }
-
+            // 비밀번호 같은지 검사
             if (!binding.etPw.getText().toString().equals(binding.etPwConfirm.getText().toString())) {
-                Common.showToast(act, getString(R.string.find_pw_same_warning));
+                Common.showToast(act, getString(R.string.join_pw_same_warning));
+                return;
+            }
+
+            // 정규식 검사 (특수문자, 영어, 숫자)
+            if(!Pattern.matches("^[a-zA-Z0-9!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?~`]+$", binding.etPw.getText().toString())) {
+                Common.showToast(act, getString(R.string.join_pw_check_warning));
                 return;
             }
 

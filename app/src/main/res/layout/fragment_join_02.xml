@@ -23,6 +23,7 @@
                 android:background="@drawable/wt_inpbox_191022"
                 android:hint="@string/frag_find02_pw"
                 android:inputType="textPassword"
+                android:maxLength="16"
                 android:paddingLeft="13dp"
                 android:paddingRight="13dp"
                 android:singleLine="true"
@@ -38,12 +39,14 @@
                 android:background="@drawable/wt_inpbox_191022"
                 android:hint="@string/frag_find02_pw_confirm"
                 android:inputType="textPassword"
+                android:maxLength="16"
                 android:paddingLeft="13dp"
                 android:paddingRight="13dp"
                 android:singleLine="true"
                 android:textColor="@color/color_444444"
                 android:textColorHint="@color/color_aaaaaa"
                 android:textSize="14dp" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -3,117 +3,610 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/dl_chat"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
+        <!--android:animateLayoutChanges="true"-->
+        <LinearLayout
+            android:id="@+id/ll_all"
             android:layout_width="match_parent"
-            android:layout_height="58dp"
-            android:background="@color/color_28a7e1"
-            android:paddingLeft="@dimen/toolbar_padding_left"
-            android:paddingRight="@dimen/toolbar_padding_right"
-            android:theme="@style/ToolbarTheme"
-            app:contentInsetStart="0dp"
-            app:popupTheme="@style/ToolbarTheme">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:background="@drawable/wt_bg_unreadchat_wh_191022"
-                android:gravity="center"
-                android:visibility="visible">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
+                android:background="@color/color_28a7e1"
+                android:paddingLeft="@dimen/toolbar_padding_left"
+                android:paddingRight="@dimen/toolbar_padding_right"
+                android:theme="@style/ToolbarTheme"
+                app:contentInsetStart="0dp"
+                app:popupTheme="@style/ToolbarTheme">
+
+                <LinearLayout
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/wt_bg_unreadchat_wh_191022"
+                    android:gravity="center"
+                    android:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/tv_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:includeFontPadding="false"
+                        android:text="1"
+                        android:textColor="@color/color_28a7e1"
+                        android:textSize="13dp" />
+                </LinearLayout>
 
                 <TextView
+                    android:id="@+id/tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:ellipsize="end"
                     android:includeFontPadding="false"
-                    android:text="1"
-                    android:textColor="@color/color_28a7e1"
-                    android:textSize="13dp" />
+                    android:maxWidth="210dp"
+                    android:singleLine="true"
+                    android:textColor="@color/color_white"
+                    android:textSize="19dp"
+                    android:textStyle="bold"
+                    tools:text="홍길동" />
+            </androidx.appcompat.widget.Toolbar>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <!-- recyclerview area -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rcv_chatting"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_b8cfe1"
+                    android:fadingEdge="none"
+                    android:overScrollMode="never" />
+
+                <LinearLayout
+                    android:id="@+id/ll_touch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
+                <LinearLayout
+                    android:id="@+id/ll_record_area"
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/shape_rounded_rectangle"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/wt_recording_icon" />
+
+                    <TextView
+                        android:id="@+id/tv_record_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_white"
+                        android:textSize="17dp"
+                        tools:text="00:00" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:text="위로 밀어서 취소"
+                        android:textColor="@color/color_white"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_record_notice_area"
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/shape_rounded_rectangle"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/wt_warning_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_white"
+                        android:textSize="17dp"
+                        android:visibility="invisible"
+                        tools:text="00:00" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:text="메시지가 너무 짧습니다"
+                        android:textColor="@color/color_white"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_record_cancel_area"
+                    android:layout_width="220dp"
+                    android:layout_height="220dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/shape_rounded_rectangle"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/wt_back_icon" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/color_white"
+                        android:textSize="17dp"
+                        android:visibility="invisible"
+                        tools:text="00:00" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:gravity="center"
+                        android:layout_marginTop="10dp"
+                        android:paddingLeft="12dp"
+                        android:paddingRight="12dp"
+                        android:background="@drawable/shape_rounded_cancel_sub"
+                        android:text="놓아서 취소하기"
+                        android:textColor="@color/color_white"
+                        android:textSize="15dp" />
+
+                </LinearLayout>
+            </FrameLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="3px"
+                android:background="@drawable/wt_chatline_191022" />
+
+
+            <!-- bottom menu area -->
+            <LinearLayout
+                android:id="@+id/ll_bottom_default_area"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@color/color_f7f7f7"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <FrameLayout
+                    android:id="@+id/fl_record"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:paddingLeft="23dp"
+                    android:paddingRight="6dp">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/wt_speaker_btn" />
+                </FrameLayout>
+
+                <EditText
+                    android:id="@+id/et_text"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_rounded_record_off"
+                    android:gravity="center_vertical"
+                    android:hint="@string/act_chat_hint"
+                    android:lineSpacingExtra="2dp"
+                    android:maxLines="4"
+                    android:paddingLeft="8dp"
+                    android:textColor="@color/color_222222"
+                    android:textColorHint="@color/color_aaaaaa"
+                    android:textSize="16dp" />
+
+                <FrameLayout
+                    android:id="@+id/fl_right_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent">
+
+                    <FrameLayout
+                        android:id="@+id/fl_send"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="bottom"
+                        android:visibility="gone"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="5dp">
+
+                        <ImageView
+                            android:layout_width="53dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/wt_btn_chatsend_191022" />
+                    </FrameLayout>
+
+                    <FrameLayout
+                        android:id="@+id/fl_more01"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="bottom"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:paddingLeft="6dp"
+                        android:paddingRight="23dp">
+
+                        <ImageView
+                            android:layout_width="35dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/wt_btn_chatmore_191022" />
+                    </FrameLayout>
+                </FrameLayout>
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:ellipsize="end"
-                android:includeFontPadding="false"
-                android:maxWidth="210dp"
-                android:singleLine="true"
-                android:text="홍길동"
-                android:textColor="@color/color_white"
-                android:textSize="19dp"
-                android:textStyle="bold" />
-        </androidx.appcompat.widget.Toolbar>
-
-        <!-- recyclerview area -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:background="@color/color_f2f3f4" />
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="3px"
-            android:background="@drawable/wt_chatline_191022" />
-
-        <!-- bottom menu area -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/color_white"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <FrameLayout
-                android:layout_width="wrap_content"
+            <!-- bottom record menu area -->
+            <LinearLayout
+                android:id="@+id/ll_bottom_record_area"
+                android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:layout_gravity="bottom"
-                android:paddingLeft="23dp">
+                android:background="@color/color_f7f7f7"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <FrameLayout
+                    android:id="@+id/fl_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:paddingLeft="23dp"
+                    android:paddingRight="6dp">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/wt_keybord_btn" />
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tv_record_btn"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_rounded_record_off"
+                    android:gravity="center"
+                    android:text="눌러서 말하기"
+                    android:textColor="@color/color_222222"
+                    android:textSize="16dp" />
+
+
+                <FrameLayout
+                    android:id="@+id/fl_more02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="bottom"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:paddingLeft="6dp"
+                    android:paddingRight="23dp">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/wt_btn_chatmore_191022" />
+                </FrameLayout>
+            </LinearLayout>
+
+
+            <!-- bottom menu -->
+
+            <LinearLayout
+                android:id="@+id/ll_bottom_menu_area"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:visibility="gone"
+                android:background="@color/color_f7f7f7"
+                android:orientation="vertical">
 
                 <ImageView
-                    android:layout_width="35dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="2px"
+                    android:background="@drawable/wt_chatline_191022" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/wt_btn_chatmore_191022" />
-            </FrameLayout>
+                    android:orientation="horizontal">
 
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@null"
-                android:hint="@string/act_chat_hint"
-                android:lineSpacingExtra="2dp"
-                android:maxLines="4"
-                android:paddingLeft="10dp"
-                android:paddingTop="3dp"
-                android:paddingBottom="3dp"
-                android:textColor="@color/color_222222"
-                android:textColorHint="@color/color_aaaaaa"
-                android:textSize="16dp" />
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
 
+                    <LinearLayout
+                        android:id="@+id/ll_album"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="56dp"
-                android:layout_gravity="bottom"
-                android:paddingRight="23dp">
+                        <ImageView
+                            android:layout_width="@dimen/dimen_chat_bottom_menu_width"
+                            android:layout_height="@dimen/dimen_chat_bottom_menu_height"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/sel_chat_menu_album"/>
 
-                <ImageView
-                    android:layout_width="53dp"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="앨범"
+                            android:layout_marginTop="7dp"
+                            android:textColor="@color/color_818181"
+                            android:textSize="11dp"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <LinearLayout
+                        android:id="@+id/ll_camera"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/dimen_chat_bottom_menu_width"
+                            android:layout_height="@dimen/dimen_chat_bottom_menu_height"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/sel_chat_menu_camera"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="카메라"
+                            android:layout_marginTop="7dp"
+                            android:textColor="@color/color_818181"
+                            android:textSize="11dp"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <LinearLayout
+                        android:id="@+id/ll_call_video"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/dimen_chat_bottom_menu_width"
+                            android:layout_height="@dimen/dimen_chat_bottom_menu_height"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/sel_chat_menu_call_video"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="영상 통화"
+                            android:layout_marginTop="7dp"
+                            android:textColor="@color/color_818181"
+                            android:textSize="11dp"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <LinearLayout
+                        android:id="@+id/ll_call_voice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/dimen_chat_bottom_menu_width"
+                            android:layout_height="@dimen/dimen_chat_bottom_menu_height"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/sel_chat_menu_call_voice"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="음성 통화"
+                            android:layout_marginTop="7dp"
+                            android:textColor="@color/color_818181"
+                            android:textSize="11dp"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/wt_btn_chatsend_191022" />
-            </FrameLayout>
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <LinearLayout
+                        android:id="@+id/ll_file"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/dimen_chat_bottom_menu_width"
+                            android:layout_height="@dimen/dimen_chat_bottom_menu_height"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/sel_chat_menu_file"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="파일"
+                            android:layout_marginTop="7dp"
+                            android:textColor="@color/color_818181"
+                            android:textSize="11dp"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/dimen_chat_bottom_menu_width"
+                            android:layout_height="@dimen/dimen_chat_bottom_menu_height"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:layout_marginTop="7dp"
+                            android:textColor="@color/color_818181"
+                            android:textSize="11dp"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/dimen_chat_bottom_menu_width"
+                            android:layout_height="@dimen/dimen_chat_bottom_menu_height"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:layout_marginTop="7dp"
+                            android:textColor="@color/color_818181"
+                            android:textSize="11dp"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/dimen_chat_bottom_menu_width"
+                            android:layout_height="@dimen/dimen_chat_bottom_menu_height"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:layout_marginTop="7dp"
+                            android:textColor="@color/color_818181"
+                            android:textSize="11dp"/>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="2"/>
+
+            </LinearLayout>
         </LinearLayout>
 
-    </LinearLayout>
+        <!-- drawer -->
+        <include
+            android:id="@+id/dl_drawer"
+            layout="@layout/drawer_layout" />
+
+    </androidx.drawerlayout.widget.DrawerLayout>
 </layout>

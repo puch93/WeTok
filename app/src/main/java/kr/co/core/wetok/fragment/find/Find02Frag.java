@@ -27,6 +27,7 @@ import kr.co.core.wetok.R;
 import kr.co.core.wetok.activity.FindPwAct;
 import kr.co.core.wetok.databinding.FragmentFind02Binding;
 import kr.co.core.wetok.fragment.BaseFrag;
+import kr.co.core.wetok.preference.UserPref;
 import kr.co.core.wetok.server.ReqBasic;
 import kr.co.core.wetok.server.netUtil.HttpResult;
 import kr.co.core.wetok.server.netUtil.NetUrls;
@@ -37,6 +38,8 @@ public class Find02Frag extends BaseFrag implements View.OnClickListener {
     private AppCompatActivity act;
 
     private ActionBar actionBar;
+
+    private String midx;
 
     @Nullable
     @Override
@@ -49,6 +52,7 @@ public class Find02Frag extends BaseFrag implements View.OnClickListener {
         binding.etPw.addTextChangedListener(textWatcher);
         binding.etPwConfirm.addTextChangedListener(textWatcher);
 
+        midx = getArguments().getString("midx");
         return binding.getRoot();
     }
 
@@ -77,7 +81,11 @@ public class Find02Frag extends BaseFrag implements View.OnClickListener {
         };
 
         server.setTag("Modify Password");
+        server.addParams("siteUrl", NetUrls.SITEURL);
+        server.addParams("CONNECTCODE", "APP");
+
         server.addParams("dbControl", NetUrls.SET_MODIFY_PW);
+        server.addParams("midx", midx);
         server.addParams("pw", binding.etPw.getText().toString());
         server.addParams("pw_confirm", binding.etPwConfirm.getText().toString());
         server.execute(true, false);
@@ -157,7 +165,7 @@ public class Find02Frag extends BaseFrag implements View.OnClickListener {
                 return;
             }
 
-            showDialog();
+            setPassword();
         }
     }
 }

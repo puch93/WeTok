@@ -42,6 +42,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="?android:attr/selectableItemBackground"
                 android:gravity="center"
                 android:orientation="vertical">
 
@@ -69,6 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
+                android:background="?android:attr/selectableItemBackground"
                 android:orientation="vertical">
 
                 <TextView
@@ -85,6 +87,7 @@
                     android:id="@+id/iv_from_id"
                     android:layout_width="34dp"
                     android:layout_height="wrap_content"
+                    android:visibility="invisible"
                     android:adjustViewBounds="true"
                     android:src="@drawable/wt_tab_line_on_191022" />
             </LinearLayout>

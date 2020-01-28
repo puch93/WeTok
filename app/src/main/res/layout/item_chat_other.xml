@@ -3,47 +3,38 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    tools:background="@color/color_c8ced1"
     android:gravity="left"
     android:orientation="horizontal"
-    android:paddingLeft="23dp"
-    android:paddingTop="3dp"
-    android:paddingBottom="3dp">
+    android:paddingLeft="10dp"
+    android:paddingTop="4dp"
+    android:paddingBottom="4dp">
 
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <!-- profile image -->
-        <ImageView
-            android:layout_width="53dp"
-            android:layout_height="53dp"
-            android:adjustViewBounds="true"
-            android:scaleType="centerCrop" />
-
-        <!-- no profile image -->
-        <ImageView
-            android:layout_width="53dp"
-            android:layout_height="53dp"
-            android:adjustViewBounds="true"
-            android:src="@drawable/wt_profile100_def_191022" />
-    </FrameLayout>
+    <!-- profile image -->
+    <!--android:background="@drawable/wt_profile100_def_191022"-->
+    <ImageView
+        android:id="@+id/iv_profile"
+        android:layout_width="43dp"
+        android:layout_height="43dp"
+        android:background="@drawable/wt_profile156_def_191126"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="13dp"
+        android:layout_marginLeft="5dp"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/tv_nick"
+            android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="7dp"
+            android:layout_marginLeft="5dp"
             android:includeFontPadding="false"
-            tools:text="홍길동"
-            android:textColor="@color/color_444444"
-            android:textSize="15dp"
-            android:textStyle="bold" />
+            android:textColor="@color/color_222222"
+            android:textSize="13dp"
+            tools:text="홍길동" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -51,7 +42,7 @@
             android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tv_msg"
+                android:id="@+id/tv_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
@@ -59,35 +50,38 @@
                 android:background="@drawable/wt_chatbox02_191022"
                 android:lineSpacingExtra="2dp"
                 android:maxWidth="210dp"
-                android:visibility="visible"
                 android:paddingLeft="16dp"
-                android:paddingTop="8dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="8dp"
-                tools:text="반가워요 :)"
-                android:textColor="@color/color_666666"
-                android:textSize="14dp" />
-
-            <ImageView
-                android:id="@+id/iv_sendimg"
-                android:layout_width="167dp"
-                android:layout_height="167dp"
-                android:layout_marginLeft="7dp"
-                android:layout_marginTop="4dp"
-                android:adjustViewBounds="true"
-                android:scaleType="fitXY"
-                android:visibility="gone" />
+                android:paddingTop="7dp"
+                android:paddingRight="12dp"
+                android:paddingBottom="10dp"
+                android:textColor="@color/color_1e1e1e"
+                android:textSize="15dp"
+                android:visibility="visible"
+                tools:text="반가워요 :)" />
 
             <TextView
-                android:id="@+id/tv_sendtime"
+                android:id="@+id/tv_send_time"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginLeft="5dp"
                 android:layout_marginBottom="1dp"
                 android:includeFontPadding="false"
-                tools:text="오전 09:10"
-                android:textColor="@color/color_aaaaaa"
+                android:textColor="@color/color_64717c"
+                android:textSize="11dp"
+                tools:text="오전 09:10" />
+            <!--android:textColor="@color/color_aaaaaa"-->
+
+            <TextView
+                android:id="@+id/tv_is_read"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="5dp"
+                android:layout_marginBottom="1dp"
+                android:includeFontPadding="false"
+                android:text="1"
+                android:textColor="@color/color_248fc0"
                 android:textSize="11dp" />
         </LinearLayout>
     </LinearLayout>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="right"
+    android:orientation="horizontal"
+    android:paddingTop="4dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="4dp">
+
+    <TextView
+        android:id="@+id/tv_is_read"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="1dp"
+        android:includeFontPadding="false"
+        android:text="1"
+        android:textColor="@color/color_248fc0"
+        android:textSize="11dp" />
+
+    <TextView
+        android:id="@+id/tv_send_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="1dp"
+        android:includeFontPadding="false"
+        android:textColor="@color/color_64717c"
+        android:textSize="11dp"
+        tools:text="오전 09:05" />
+    <!--android:textColor="@color/color_aaaaaa"-->
+
+    <!--8dp-->
+    <LinearLayout
+        android:id="@+id/ll_all_area"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/wt_chatbox01_191022"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="9dp"
+        android:paddingTop="12dp"
+        android:paddingRight="16dp"
+        android:paddingBottom="12dp">
+
+        <ImageView
+            android:id="@+id/iv_record_image"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="55dp"
+            android:adjustViewBounds="true" />
+
+        <TextView
+            android:id="@+id/tv_record_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxWidth="210dp"
+            android:textColor="@color/color_1e1e1e"
+            android:textSize="14dp"
+            android:visibility="visible"
+            tools:text="00:05" />
+    </LinearLayout>
+</LinearLayout>

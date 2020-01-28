@@ -30,16 +30,27 @@
                 android:textStyle="bold" />
         </androidx.appcompat.widget.Toolbar>
 
-        <TextView
+        <ScrollView
+            android:id="@+id/sv_term"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingLeft="22dp"
-            android:paddingTop="32dp"
-            android:paddingRight="22dp"
-            android:scrollbars="vertical"
-            android:text="제 1장 총칙"
-            android:textColor="@color/color_444444"
-            android:textSize="14dp" />
+            android:fillViewport="true">
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <TextView
+                    android:id="@+id/tv_term"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:text="제 1장 총칙"
+                    android:textColor="@color/color_444444"
+                    android:textSize="14dp" />
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
 </layout>

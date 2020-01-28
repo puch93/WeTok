@@ -47,6 +47,20 @@ public class BirthAct extends AppCompatActivity {
 
         setActionBar();
         setSpinner();
+
+        for (int i = 0; i < birth_codes.length; i++) {
+            if(birth_codes[i].equalsIgnoreCase(getIntent().getStringExtra("birth"))) {
+                binding.spinner.setSelection(i, true);
+                break;
+            }
+        }
+
+        binding.tvConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setBirth();
+            }
+        });
     }
 
     private void setBirth() {
@@ -58,6 +72,7 @@ public class BirthAct extends AppCompatActivity {
                         JSONObject jo = new JSONObject(resultData.getResult());
 
                         if(jo.getString("result").equalsIgnoreCase("Y")) {
+                            setResult(RESULT_OK);
                             finish();
                         } else {
 
@@ -74,9 +89,12 @@ public class BirthAct extends AppCompatActivity {
         };
 
         server.setTag("Set Birth");
+        server.addParams("siteUrl", NetUrls.SITEURL);
+        server.addParams("CONNECTCODE", "APP");
+        server.addParams("_APP_MEM_IDX", UserPref.getMidx(act));
+
         server.addParams("dbControl", NetUrls.SET_PROFILE_BIRTH);
-        server.addParams("m_idx", UserPref.getMidx(act));
-        server.addParams("m_birth", binding.spinner.getSelectedItem().toString());
+        server.addParams("m_name", binding.spinner.getSelectedItem().toString());
         server.execute(true, false);
     }
 

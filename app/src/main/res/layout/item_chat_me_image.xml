@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="right"
+    android:orientation="horizontal"
+    android:paddingTop="4dp"
+    android:paddingRight="10dp"
+    android:paddingBottom="4dp">
+
+    <TextView
+        android:id="@+id/tv_is_read"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="1dp"
+        android:includeFontPadding="false"
+        android:textColor="@color/color_248fc0"
+        android:textSize="11dp"
+        tools:text="1" />
+
+    <TextView
+        android:id="@+id/tv_send_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="1dp"
+        android:includeFontPadding="false"
+        android:textColor="@color/color_64717c"
+        android:textSize="11dp"
+        tools:text="오전 09:05" />
+
+    <ImageView
+        android:id="@+id/iv_send_image"
+        android:layout_width="180dp"
+        android:layout_height="180dp"
+        android:layout_marginRight="7dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:background="@drawable/tomyeng" />
+</LinearLayout>

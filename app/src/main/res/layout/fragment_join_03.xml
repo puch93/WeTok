@@ -11,33 +11,19 @@
         <FrameLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:paddingLeft="23dp"
             android:layout_gravity="center_horizontal"
-            android:paddingTop="23dp"
-            android:paddingRight="23dp">
+            android:paddingTop="23dp">
 
-            <FrameLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp">
+            <!-- profile image -->
+            <ImageView
+                android:id="@+id/iv_profile"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                android:layout_margin="10dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/wt_profile100_def_191022"
+                android:scaleType="centerCrop" />
 
-                <!-- profile image -->
-                <ImageView
-                    android:id="@+id/iv_profile"
-                    android:layout_width="115dp"
-                    android:layout_height="115dp"
-                    android:adjustViewBounds="true"
-                    android:background="@drawable/wt_profile100_def_191022"
-                    android:scaleType="centerCrop" />
-
-                <!-- no profile image -->
-                <ImageView
-                    android:id="@+id/iv_profile_none"
-                    android:layout_width="115dp"
-                    android:layout_height="115dp"
-                    android:adjustViewBounds="true"
-                    android:src="@drawable/wt_profile100_def_191022" />
-            </FrameLayout>
 
             <!-- profile image button -->
             <FrameLayout

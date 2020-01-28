@@ -15,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -65,7 +66,13 @@ public class Find01Frag extends BaseFrag implements View.OnClickListener {
                         JSONObject jo = new JSONObject(resultData.getResult());
 
                         if(jo.getString("result").equalsIgnoreCase("Y")) {
-                            ((FindPwAct) act).replaceFragment(new Find02Frag());
+
+                            BaseFrag fragment = new Find02Frag();
+                            Bundle bundle = new Bundle(1);
+                            bundle.putString("midx", jo.getString("CODE"));
+                            fragment.setArguments(bundle);
+                            ((FindPwAct) act).replaceFragment(fragment);
+
                         } else {
                             Common.showToast(act, getString(R.string.find_check_pw_warning));
                         }
@@ -80,7 +87,13 @@ public class Find01Frag extends BaseFrag implements View.OnClickListener {
             }
         };
 
-        String hp = binding.spinner.getSelectedItem().toString() + binding.etNumber;
+
+        String hp = "";
+        if(binding.spinner.getSelectedItemPosition() == 0) {
+            hp = binding.etNumber.getText().toString();
+        } else {
+            hp = binding.spinner.getSelectedItem().toString() + binding.etNumber.getText().toString();
+        }
 
         server.setTag("Check Password");
         server.addParams("dbControl", NetUrls.CHECK_FIND_PW);
@@ -174,8 +187,8 @@ public class Find01Frag extends BaseFrag implements View.OnClickListener {
                 return;
             }
 
-//            setCheckPw();
-            ((FindPwAct) act).replaceFragment(new Find02Frag());
+            setCheckPw();
+
         }
     }
 }

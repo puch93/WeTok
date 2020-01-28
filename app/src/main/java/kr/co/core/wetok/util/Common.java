@@ -5,54 +5,69 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.pm.PackageManager;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
+import android.util.Log;
 import android.widget.Toast;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
+import java.util.regex.Pattern;
 
 import kr.co.core.wetok.R;
+import kr.co.core.wetok.server.netUtil.NetUrls;
 
 public class Common {
     public static void showToast(final Activity act, final String msg) {
-        act.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(act, msg, Toast.LENGTH_SHORT).show();
-            }
-        });
+        if(null != act) {
+            act.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(act, msg, Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     public static void showToastLong(final Activity act, final String msg) {
-        act.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(act, msg, Toast.LENGTH_LONG).show();
-            }
-        });
+        if(null != act) {
+            act.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(act, msg, Toast.LENGTH_LONG).show();
+                }
+            });
+        }
     }
 
     public static void showToastNetwork(final Activity act) {
-        act.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(act, act.getString(R.string.toast_network), Toast.LENGTH_SHORT).show();
-            }
-        });
+        if(null != act) {
+            act.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(act, act.getString(R.string.toast_network), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
 
     public static void showToastDevelop(final Activity act) {
-        act.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(act, act.getString(R.string.toast_develop), Toast.LENGTH_SHORT).show();
-            }
-        });
+        if(null != act) {
+            act.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(act, act.getString(R.string.toast_develop), Toast.LENGTH_SHORT).show();
+                }
+            });
+        }
     }
-
 
 
     // get device id
@@ -83,6 +98,17 @@ public class Common {
         return deviceID;
     }
 
+    public static String getRandomPhoneNumber() {
+        Random random = new Random();
+
+        String result = "";
+        for (int i = 0; i < 8; i++) {
+            result += String.valueOf(random.nextInt(9));
+        }
+
+        return result;
+    }
+
     // get phone num
     public static String getPhoneNumber(Activity act) {
         TelephonyManager tm = (TelephonyManager) act.getSystemService(Context.TELEPHONY_SERVICE);
@@ -90,21 +116,96 @@ public class Common {
         if (StringUtil.isNull(phoneNum)) {
             return null;
         } else {
+//            phoneNum = "13906385737";
+            Log.e(StringUtil.TAG, "phoneNum: " + phoneNum);
+
             if (phoneNum.startsWith("+82")) {
                 phoneNum = phoneNum.replace("+82", "0");
             }
+
+//            // 코리아
+//            if (phoneNum.contains("82")) {
+//                if (phoneNum.charAt(0) == '8' && phoneNum.charAt(1) == '2') {
+//                    Log.e(StringUtil.TAG, "case 1");
+//                    phoneNum = phoneNum.replaceFirst("82", "0");
+//
+//                } else if (phoneNum.charAt(1) == '8' && phoneNum.charAt(2) == '2') {
+//                    Log.e(StringUtil.TAG, "case 2");
+//                    phoneNum = phoneNum.replaceFirst("[+]", "");
+//                    phoneNum = phoneNum.replaceFirst("82", "0");
+//                }
+//
+//                // 차이나
+//            } else if (phoneNum.contains("86")) {
+//                if (phoneNum.charAt(0) == '8' && phoneNum.charAt(1) == '6') {
+//                    Log.e(StringUtil.TAG, "case 3");
+//                    phoneNum = phoneNum.replaceFirst("86", "1");
+//
+//                } else if (phoneNum.charAt(1) == '8' && phoneNum.charAt(2) == '6') {
+//                    Log.e(StringUtil.TAG, "case 4");
+//                    phoneNum = phoneNum.replaceFirst("[+]", "");
+//                    phoneNum = phoneNum.replaceFirst("86", "1");
+//                }
+//            }
+
+//            if(!phoneNum.contains("+82") && !phoneNum.contains("+86")) {
+//                    // 한국 번호 +82
+//                Log.e(StringUtil.TAG, "phoneNum true");
+//                if (!Pattern.matches("^01(?:0|1|[6-9]) - (?:\\d{3}|\\d{4}) - \\d{4}$", phoneNum)) {
+//                    phoneNum = phoneNum.substring(1);
+//                    phoneNum = "+82" + phoneNum;
+//
+//                    // 중국 번호 +86
+//                } else if (!Pattern.matches("^1[3|4|5|8][0-9] - \\d{8}$", phoneNum)) {
+//                    phoneNum = "86" + phoneNum;
+//                }
+//            }
+
+
+            Log.e(StringUtil.TAG, "phoneNum result: " + phoneNum);
+
             return phoneNum;
         }
     }
 
-    public static boolean isAppTopRun(Context ctx, String baseClassName){
-        ActivityManager activityManager = (ActivityManager)ctx.getSystemService(Context.ACTIVITY_SERVICE);
+    public static String converTimeSimpleLong(long original) {
+        Date date = new Date(original);
+        SimpleDateFormat dateFormat;
+        dateFormat = new SimpleDateFormat("m:ss", java.util.Locale.getDefault());
+        return dateFormat.format(date);
+    }
+
+    public static String converTimeSimpleLInt(int original) {
+        Date date = new Date(original);
+        SimpleDateFormat dateFormat;
+        dateFormat = new SimpleDateFormat("m:ss", java.util.Locale.getDefault());
+        return dateFormat.format(date);
+    }
+
+    public static String converTime(String original) {
+        //아이템별 시간
+        String time1 = original;
+        SimpleDateFormat dateFormat1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss", java.util.Locale.getDefault());
+        Date date1 = null;
+        try {
+            date1 = dateFormat1.parse(time1);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        SimpleDateFormat dateFormat2 = new SimpleDateFormat("a hh:mm", java.util.Locale.getDefault());
+        String time2 = dateFormat2.format(date1);
+        return time2;
+    }
+
+    public static boolean isAppTopRun(Context ctx, String baseClassName) {
+        ActivityManager activityManager = (ActivityManager) ctx.getSystemService(Context.ACTIVITY_SERVICE);
         List<ActivityManager.RunningTaskInfo> info;
         info = activityManager.getRunningTasks(1);
-        if(info==null || info.size()==0){
+        if (info == null || info.size() == 0) {
             return false;
         }
-        if(info.get(0).baseActivity.getClassName().equals(baseClassName)) {
+        if (info.get(0).baseActivity.getClassName().equals(baseClassName)) {
             return true;
         } else {
             return false;

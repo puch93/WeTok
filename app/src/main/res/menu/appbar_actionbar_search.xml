@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+
+    <item
+        android:id="@+id/action_init"
+        android:icon="@drawable/wt_icon_close_wh_191022"
+        android:title="Init"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/action_search"
+        android:icon="@drawable/wt_icon_search_wh_191022"
+        android:title="Search"
+        app:showAsAction="always" />
+
+</menu>

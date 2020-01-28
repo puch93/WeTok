@@ -10,9 +10,17 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
+        android:name=".util.CustomApplication"
         android:allowBackup="true"
         android:icon="@drawable/app_icon"
         android:label="@string/app_name"
@@ -20,8 +28,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".activity.PermissionAct"/>
+        tools:ignore="GoogleAppIndexingWarning"
+        tools:replace="android:allowBackup,android:icon">
+        <activity android:name=".activity.rtc.ConnectActivity" />
+        <activity android:name=".activity.rtc.VoiceCallAct" />
+        <activity android:name=".activity.rtc.VideoCallAct" />
+        <activity android:name=".activity.rtc.VideoReceiveAct" />
+        <activity android:name=".activity.rtc.VoiceReceiveAct" />
+        <activity android:name=".activity.VideoAct" />
+        <activity android:name=".activity.ChatAddAct" />
+        <activity android:name=".activity.StoryRegisterAct" />
+        <activity android:name=".activity.StoryAct" />
+        <activity android:name=".activity.PermissionAct" />
         <activity android:name=".activity.BirthAct" />
         <activity android:name=".activity.ModifyPwAct" />
         <activity android:name=".activity.IntroduceAct" />
@@ -36,32 +54,35 @@
         <activity android:name=".dialog.PasswordDlg" />
         <activity android:name=".activity.FindPwAct" />
         <activity android:name=".activity.LoginAct" />
-        <activity android:name=".activity.MainAct" />
         <activity android:name=".activity.JoinAct" />
-        <activity android:name=".activity.ChatAct" />
+        <activity android:name=".activity.MainAct" />
         <activity android:name=".activity.BaseAct" />
+
+        <activity android:name=".activity.ChatAct"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <activity
+            android:name=".dialog.PopUpAdDlg"
+            android:theme="@style/ActivityDialog" />
+        <activity android:name=".activity.EnlargeAct" />
+        <activity
+            android:name=".activity.ProfileOtherAct"
+            android:theme="@style/Theme.Slidr.Slidable" />
+        <activity
+            android:name=".activity.ProfileMeAct"
+            android:theme="@style/Theme.Slidr.Slidable" />
+
+
         <activity android:name=".activity.SplashAct">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <!-- <action android:name="android.intent.action.SEARCH" /> -->
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-            <!-- <meta-data -->
-            <!-- android:name="android.app.searchable" -->
-            <!-- android:resource="@xml/searchable"/> -->
         </activity>
 
-        <meta-data
-            android:name="firebase_messaging_auto_init_enabled"
-            android:value="false" />
-        <meta-data
-            android:name="firebase_analytics_collection_enabled"
-            android:value="false" />
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:value="1" />
+        <receiver
+            android:name=".firebase.MyBroadcastReceiver"
+            android:exported="false" />
 
         <service
             android:name=".firebase.MyFirebaseMessagingService"
@@ -82,6 +103,17 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
         </provider>
+
+        <!--meta-data-->
+        <meta-data
+            android:name="firebase_messaging_auto_init_enabled"
+            android:value="false" />
+        <meta-data
+            android:name="firebase_analytics_collection_enabled"
+            android:value="false" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="1" />
     </application>
 
 </manifest>

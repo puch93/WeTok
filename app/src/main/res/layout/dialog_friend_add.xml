@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="51dp"
+        android:paddingRight="51dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="201dp"
+            android:background="@drawable/wt_popup_box_191022"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_white"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="23dp"
+                android:paddingTop="23dp"
+                android:paddingRight="15dp"
+                android:paddingBottom="23dp">
+
+
+                <ImageView
+                    android:id="@+id/iv_profile"
+                    android:layout_width="52dp"
+                    android:layout_height="52dp"
+                    android:adjustViewBounds="true"
+                    android:background="@drawable/wt_profile156_def_191126"
+                    android:scaleType="centerCrop" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingLeft="14dp">
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/color_444444"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        tools:text="김가나" />
+
+                    <TextView
+                        android:id="@+id/tv_intro"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:ellipsize="end"
+                        android:singleLine="true"
+                        android:textColor="@color/color_aaaaaa"
+                        android:textSize="14dp"
+                        tools:text="안녕하세요 김가나입니다" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2px"
+                android:background="@drawable/wt_line360_191022" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tv_confirm"
+                    android:layout_width="205dp"
+                    android:layout_height="52dp"
+                    android:background="@drawable/wt_btn180_191022"
+                    android:gravity="center"
+                    android:text="@string/dlg_friend_add_btn"
+                    android:textColor="@color/color_white"
+                    android:textSize="17dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

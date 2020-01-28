@@ -78,6 +78,8 @@ public class Join03Frag extends BaseFrag implements View.OnClickListener {
     private Uri photoUri;
     private String mPathProfile;
 
+    private String phoneNum;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -89,12 +91,17 @@ public class Join03Frag extends BaseFrag implements View.OnClickListener {
         id = getArguments().getString("id");
         pw = getArguments().getString("pw");
 
+        phoneNum = Common.getPhoneNumber(act);
+
         if (StringUtil.isNull(UserPref.getFcmToken(act))) {
             getFcmToken();
         } else {
             fcm_token = UserPref.getFcmToken(act);
         }
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            binding.ivProfile.setClipToOutline(true);
+        }
         binding.tvConfirm.setOnClickListener(this);
         binding.flProfileImg.setOnClickListener(this);
 
@@ -118,6 +125,20 @@ public class Join03Frag extends BaseFrag implements View.OnClickListener {
         return binding.getRoot();
     }
 
+    private void nextProcess() {
+        BaseFrag fragment = new Join04Frag();
+
+        Bundle bundle = new Bundle(1);
+        bundle.putString("name", binding.etName.getText().toString());
+        bundle.putString("image", mPathProfile);
+        bundle.putString("id", id);
+        bundle.putString("pw", pw);
+        fragment.setArguments(bundle);
+
+        ((JoinAct) act).replaceFragment(fragment);
+    }
+
+
     private void setJoin() {
         ReqBasic server = new ReqBasic(act, NetUrls.ADDRESS) {
             @Override
@@ -126,14 +147,18 @@ public class Join03Frag extends BaseFrag implements View.OnClickListener {
                 if (resultData.getResult() != null) {
                     try {
                         JSONObject jo = new JSONObject(resultData.getResult());
+                        final String result = jo.getString("result");
+                        final String message = jo.getString("message");
 
-                        if (jo.getString("result").equalsIgnoreCase("Y")) {
+                        if (result.equalsIgnoreCase("Y")) {
                             act.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
-                                    ((JoinAct) act).replaceFragment(new Join04Frag());
+                                    nextProcess();
                                 }
                             });
+                        } else {
+                            Common.showToast(act, message);
                         }
 
                     } catch (JSONException e) {
@@ -155,7 +180,8 @@ public class Join03Frag extends BaseFrag implements View.OnClickListener {
         server.addParams("m_pass", pw);
         server.addParams("m_pass_confirm", pw);
         server.addParams("m_birthday", binding.spinner.getSelectedItem().toString());
-        server.addParams("m_hp", Common.getPhoneNumber(act));
+//        server.addParams("m_hp", phoneNum);
+        server.addParams("m_hp", Common.getRandomPhoneNumber());
 
         File file = new File(mPathProfile);
         server.addFileParams("m_profile", file);
@@ -228,7 +254,12 @@ public class Join03Frag extends BaseFrag implements View.OnClickListener {
     }
 
     private void checkButtonActivation() {
-        if (!StringUtil.isNull(binding.etName.getText().toString())) {
+        if (
+                !StringUtil.isNull(binding.etName.getText().toString()) &&
+                        !StringUtil.isNull(phoneNum) &&
+                        !StringUtil.isNull(mPathProfile)
+
+        ) {
             binding.tvConfirm.setBackgroundResource(R.drawable.wt_btn360_enable_191022);
         } else {
             binding.tvConfirm.setBackgroundResource(R.drawable.wt_btn360_disable_191022);
@@ -247,7 +278,7 @@ public class Join03Frag extends BaseFrag implements View.OnClickListener {
         try {
             photoFile = createImageFile();
         } catch (IOException e) {
-            Common.showToast(act, "이미지 처리 오류! 다시 시도해주세요.");
+            Common.showToast(act, getString(R.string.join_picture_process_warning));
             e.printStackTrace();
         }
 
@@ -267,7 +298,6 @@ public class Join03Frag extends BaseFrag implements View.OnClickListener {
         String timeStamp = new SimpleDateFormat("HHmmss").format(new Date());
         String imageFileName = "wetok" + timeStamp;
         File storageDir = new File(Environment.getExternalStorageDirectory() + "/WeTOK/");
-//        File storageDir = new File(getExternalFilesDir(null) + "/WeTOK/");
         if (!storageDir.exists()) {
             storageDir.mkdirs();
         }
@@ -326,7 +356,7 @@ public class Join03Frag extends BaseFrag implements View.OnClickListener {
             switch (requestCode) {
                 case PICK_FROM_ALBUM:
                     if (data == null) {
-                        Common.showToast(act, "사진불러오기 실패");
+                        Common.showToast(act, getString(R.string.join_picture_load_warning));
                         return;
                     }
 
@@ -342,15 +372,11 @@ public class Join03Frag extends BaseFrag implements View.OnClickListener {
                     mPathProfile = photoUri.getPath();
 
                     if (!StringUtil.isNull(mPathProfile)) {
-                        binding.ivProfileNone.setVisibility(View.VISIBLE);
                         Glide.with(act)
                                 .load(mPathProfile)
-                                .transform(new CircleCrop())
                                 .into(binding.ivProfile);
-
-                        binding.ivProfileNone.setVisibility(View.GONE);
                     } else {
-                        Common.showToast(act, "사진생성 실패");
+                        Common.showToast(act, getString(R.string.join_picture_warning));
                     }
 
                     break;
@@ -398,11 +424,21 @@ public class Join03Frag extends BaseFrag implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.tv_confirm) {
+            // 닉네임 길이 0 검사
             if (StringUtil.isNull(binding.etName.getText().toString())) {
-                Common.showToast(act, "이름을 입력해주세요");
+                Common.showToast(act, getString(R.string.join_name_warning));
                 return;
-            } else if(StringUtil.isNull(mPathProfile)) {
-                Common.showToast(act, "프로필 사진을 등록해주세요");
+            }
+
+            // 프로필 사진 검사
+            if(StringUtil.isNull(mPathProfile)) {
+                Common.showToast(act, getString(R.string.join_profile_warning));
+                return;
+            }
+
+            // 휴대폰번호 검사
+            if(StringUtil.isNull(phoneNum)) {
+                Common.showToast(act, getString(R.string.join_number_warning));
                 return;
             }
 

@@ -6,6 +6,10 @@ import java.text.DecimalFormat;
 
 public class StringUtil {
     public static final String TAG = "TEST_HOME";
+    public static final String TAG_CHAT = "TEST_CHAT";
+    public static final String TAG_PUSH = "TEST_PUSH";
+    public static final String TAG_RTC = "TEST_RTC";
+    public static final String TAG_SOCK = "TEST_SOCK";
 
     public static final String TYPE_INFO_ID = "id";
     public static final String TYPE_INFO_NUMBER = "number";
@@ -28,7 +32,11 @@ public class StringUtil {
     public static String getStr(JSONObject jo, String key) {
         String s = null;
         try {
-            s = jo.getString(key);
+            if (jo.has(key)) {
+                s = jo.getString(key);
+            } else {
+                s = "";
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
