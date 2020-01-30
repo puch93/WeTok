@@ -30,6 +30,9 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup,android:icon">
+        <activity
+            android:name=".dialog.DatePickerDialog"
+            android:theme="@style/ActivityDialog" />
         <activity android:name=".activity.rtc.ConnectActivity" />
         <activity android:name=".activity.rtc.VoiceCallAct" />
         <activity android:name=".activity.rtc.VideoCallAct" />

@@ -73,38 +73,54 @@
                 android:textColorHint="@color/color_aaaaaa"
                 android:textSize="14dp" />
 
+
+            <TextView
+                android:id="@+id/tv_birth"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center_vertical"
+                android:layout_marginTop="13dp"
+                android:background="@drawable/wt_inpbox_191022"
+                android:hint="@string/frag_join03_hint_02"
+                android:paddingLeft="13dp"
+                android:singleLine="true"
+                android:textColor="@color/color_222222"
+                android:textColorHint="@color/color_aaaaaa"
+                android:textSize="14dp" />
+
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="13dp"
+                android:visibility="gone"
                 android:background="@drawable/wt_inpbox_191022">
 
-                <kr.co.core.wetok.util.CustomSpinner
-                    android:id="@+id/spinner"
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:background="@null"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:overlapAnchor="false"
-                    android:spinnerMode="dropdown" />
+<!--                <kr.co.core.wetok.util.CustomSpinner-->
+<!--                    android:id="@+id/spinner"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="50dp"-->
+<!--                    android:background="@null"-->
+<!--                    android:gravity="center_vertical"-->
+<!--                    android:orientation="horizontal"-->
+<!--                    android:overlapAnchor="false"-->
+<!--                    android:spinnerMode="dropdown" />-->
 
-                <LinearLayout
-                    android:id="@+id/ll_spinner_birth"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="right">
+<!--                <LinearLayout-->
+<!--                    android:id="@+id/ll_spinner_birth"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent"-->
+<!--                    android:gravity="right">-->
 
-                    <ImageView
-                        android:id="@+id/iv_arrow"
-                        android:layout_width="12dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical|right"
-                        android:layout_marginRight="13dp"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/sel_dropdown_arrow" />
-                    <!--                    android:src="@drawable/wt_icon_dropdown_191022" />-->
-                </LinearLayout>
+<!--                    <ImageView-->
+<!--                        android:id="@+id/iv_arrow"-->
+<!--                        android:layout_width="12dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_gravity="center_vertical|right"-->
+<!--                        android:layout_marginRight="13dp"-->
+<!--                        android:adjustViewBounds="true"-->
+<!--                        android:src="@drawable/sel_dropdown_arrow" />-->
+<!--                    &lt;!&ndash;                    android:src="@drawable/wt_icon_dropdown_191022" />&ndash;&gt;-->
+<!--                </LinearLayout>-->
             </FrameLayout>
 
             <TextView

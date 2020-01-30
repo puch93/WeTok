@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -53,6 +54,7 @@ import kr.co.core.wetok.activity.JoinAct;
 import kr.co.core.wetok.adapter.WriteSpinnerAdapter;
 import kr.co.core.wetok.databinding.FragmentJoin02Binding;
 import kr.co.core.wetok.databinding.FragmentJoin03Binding;
+import kr.co.core.wetok.dialog.DatePickerDialog;
 import kr.co.core.wetok.fragment.BaseFrag;
 import kr.co.core.wetok.preference.UserPref;
 import kr.co.core.wetok.server.ReqBasic;
@@ -74,11 +76,16 @@ public class Join03Frag extends BaseFrag implements View.OnClickListener {
     private static final int PICK_FROM_ALBUM = 1001;
     private static final int PICK_FROM_CAMERA = 1002;
     private static final int CROP_IMAGE = 1003;
+    private static final int DATE_PICKER = 1004;
 
     private Uri photoUri;
     private String mPathProfile;
 
     private String phoneNum;
+
+    int year = 1970;
+    int month = 1;
+    int day = 1;
 
     @Nullable
     @Override
@@ -104,6 +111,7 @@ public class Join03Frag extends BaseFrag implements View.OnClickListener {
         }
         binding.tvConfirm.setOnClickListener(this);
         binding.flProfileImg.setOnClickListener(this);
+        binding.tvBirth.setOnClickListener(this);
 
         binding.etName.addTextChangedListener(new TextWatcher() {
             @Override
@@ -120,7 +128,7 @@ public class Join03Frag extends BaseFrag implements View.OnClickListener {
             }
         });
 
-        setSpinner();
+//        setSpinner();
 
         return binding.getRoot();
     }
@@ -179,13 +187,14 @@ public class Join03Frag extends BaseFrag implements View.OnClickListener {
         server.addParams("m_id", id);
         server.addParams("m_pass", pw);
         server.addParams("m_pass_confirm", pw);
-        server.addParams("m_birthday", binding.spinner.getSelectedItem().toString());
+        server.addParams("m_birthday", binding.tvBirth.getText().toString());
 //        server.addParams("m_hp", phoneNum);
         server.addParams("m_hp", Common.getRandomPhoneNumber());
 
         File file = new File(mPathProfile);
         server.addFileParams("m_profile", file);
-        server.execute(true, true);
+        Common.showToast(act, server.toString());
+//        server.execute(true, true);
     }
 
     private void getFcmToken() {
@@ -207,35 +216,35 @@ public class Join03Frag extends BaseFrag implements View.OnClickListener {
                 });
     }
 
-    private void setSpinner() {
-        // set spinner
-        WriteSpinnerAdapter adapter_area = new WriteSpinnerAdapter(act, android.R.layout.simple_spinner_item, birth_codes);
-        adapter_area.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner_height_set(binding.spinner, 1000);
-        binding.spinner.setAdapter(adapter_area);
-
-        // set spinner open/close listener
-        binding.spinner.setSpinnerEventsListener(new CustomSpinner.OnSpinnerEventsListener() {
-            @Override
-            public void onSpinnerOpened(Spinner spinner) {
-
-                // 현재 focus 되어있는 view 가 있으면 키보드를 내리고, focus 제거
-                View view = act.getCurrentFocus();
-                if (view != null) {
-                    InputMethodManager imm = (InputMethodManager) act.getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
-                    view.clearFocus();
-                }
-
-                binding.ivArrow.setSelected(true);
-            }
-
-            @Override
-            public void onSpinnerClosed(Spinner spinner) {
-                binding.ivArrow.setSelected(false);
-            }
-        });
-    }
+//    private void setSpinner() {
+//        // set spinner
+//        WriteSpinnerAdapter adapter_area = new WriteSpinnerAdapter(act, android.R.layout.simple_spinner_item, birth_codes);
+//        adapter_area.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+//        spinner_height_set(binding.spinner, 1000);
+//        binding.spinner.setAdapter(adapter_area);
+//
+//        // set spinner open/close listener
+//        binding.spinner.setSpinnerEventsListener(new CustomSpinner.OnSpinnerEventsListener() {
+//            @Override
+//            public void onSpinnerOpened(Spinner spinner) {
+//
+//                // 현재 focus 되어있는 view 가 있으면 키보드를 내리고, focus 제거
+//                View view = act.getCurrentFocus();
+//                if (view != null) {
+//                    InputMethodManager imm = (InputMethodManager) act.getSystemService(Context.INPUT_METHOD_SERVICE);
+//                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+//                    view.clearFocus();
+//                }
+//
+//                binding.ivArrow.setSelected(true);
+//            }
+//
+//            @Override
+//            public void onSpinnerClosed(Spinner spinner) {
+//                binding.ivArrow.setSelected(false);
+//            }
+//        });
+//    }
 
     //Spinner 길이설정
     private void spinner_height_set(Spinner spinner, int height) {
@@ -380,6 +389,25 @@ public class Join03Frag extends BaseFrag implements View.OnClickListener {
                     }
 
                     break;
+
+                case DATE_PICKER:
+                    year = data.getIntExtra("year", 0);
+                    month = data.getIntExtra("month", 0);
+                    day = data.getIntExtra("day", 0);
+
+                    String year_s = String.valueOf(year);
+                    String month_s = String.valueOf(month);
+                    String day_s = String.valueOf(day);
+
+                    if (month_s.length() == 1)
+                        month_s = "0" + month_s;
+
+                    if (day_s.length() == 1)
+                        day_s = "0" + day_s;
+
+
+                    binding.tvBirth.setText(year_s + month_s + day_s);
+                    break;
             }
         }
     }
@@ -421,6 +449,7 @@ public class Join03Frag extends BaseFrag implements View.OnClickListener {
         });
     }
 
+
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.tv_confirm) {
@@ -431,20 +460,32 @@ public class Join03Frag extends BaseFrag implements View.OnClickListener {
             }
 
             // 프로필 사진 검사
-            if(StringUtil.isNull(mPathProfile)) {
+            if (StringUtil.isNull(mPathProfile)) {
                 Common.showToast(act, getString(R.string.join_profile_warning));
                 return;
             }
 
             // 휴대폰번호 검사
-            if(StringUtil.isNull(phoneNum)) {
+            if (StringUtil.isNull(phoneNum)) {
                 Common.showToast(act, getString(R.string.join_number_warning));
+                return;
+            }
+
+            // 생년월일 검사
+            if (StringUtil.isNull(binding.tvBirth.getText().toString())) {
+                Common.showToast(act, getString(R.string.join_birth_warning));
                 return;
             }
 
             setJoin();
         } else if (v.getId() == R.id.fl_profile_img) {
             showDialog();
+        } else if (v.getId() == R.id.tv_birth) {
+            Intent intent = new Intent(act, DatePickerDialog.class);
+            intent.putExtra("year", year);
+            intent.putExtra("month", month);
+            intent.putExtra("day", day);
+            startActivityForResult(intent, DATE_PICKER);
         }
     }
 }

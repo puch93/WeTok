@@ -94,12 +94,14 @@
 
     <!-- fragment_join_03 -->
     <string name="frag_join03_hint">닉네임을 입력해주세요</string>
+    <string name="frag_join03_hint_02">생년월일을 입력해주세요</string>
     <string name="frag_join03_explanation01">사용하실 닉네임과 태어난 년도를 입력하세요</string>
     <string name="frag_join03_explanation02">사용하실 프로필 사진을 등록하세요</string>
     <!-- code -->
     <string name="join_name_warning">닉네임을 입력해주세요</string>
     <string name="join_profile_warning">프로필 사진을 등록해주세요</string>
     <string name="join_number_warning">휴대폰 번호가 있는회원만 가입하실 수 있습니다</string>
+    <string name="join_birth_warning">생년월일을 입력해주세요</string>
     <string name="join_picture_warning">사진생성 실패</string>
     <string name="join_picture_load_warning">사진불러오기 실패</string>
     <string name="join_picture_process_warning">이미지 처리 오류! 다시 시도해주세요.</string>
