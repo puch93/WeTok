@@ -33,6 +33,7 @@ import io.realm.exceptions.RealmMigrationNeededException;
 import io.realm.exceptions.RealmPrimaryKeyConstraintException;
 import kr.co.core.wetok.R;
 import kr.co.core.wetok.activity.ProfileAct;
+import kr.co.core.wetok.activity.RemittanceAct;
 import kr.co.core.wetok.activity.SettingAct;
 import kr.co.core.wetok.data.UserData;
 import kr.co.core.wetok.databinding.FragmentAllServiceBinding;
@@ -288,9 +289,13 @@ public class AllServiceFrag extends BaseFrag implements View.OnClickListener {
                 startActivityForResult(new Intent(act, ProfileAct.class), TYPE_PROFILE);
                 break;
 
+            case R.id.tv_remittance:
+                startActivity(new Intent(act, RemittanceAct.class));
+                break;
+
+
             case R.id.iv_share:
             case R.id.tv_charge:
-            case R.id.tv_remittance:
             case R.id.ll_tv_area:
             case R.id.ll_movie_area:
             case R.id.ll_destiny_area:

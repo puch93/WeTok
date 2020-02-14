@@ -30,6 +30,8 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup,android:icon">
+        <activity android:name=".activity.AccountSettingAct"></activity>
+        <activity android:name=".activity.RemittanceAct" />
         <activity
             android:name=".dialog.DatePickerDialog"
             android:theme="@style/ActivityDialog" />
@@ -60,10 +62,9 @@
         <activity android:name=".activity.JoinAct" />
         <activity android:name=".activity.MainAct" />
         <activity android:name=".activity.BaseAct" />
-
-        <activity android:name=".activity.ChatAct"
-            android:windowSoftInputMode="adjustResize"/>
-
+        <activity
+            android:name=".activity.ChatAct"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".dialog.PopUpAdDlg"
             android:theme="@style/ActivityDialog" />
@@ -74,11 +75,10 @@
         <activity
             android:name=".activity.ProfileMeAct"
             android:theme="@style/Theme.Slidr.Slidable" />
-
-
         <activity android:name=".activity.SplashAct">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -94,9 +94,7 @@
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </service>
-
-        <!-- file provider -->
+        </service> <!-- file provider -->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="kr.co.core.wetok.provider"
@@ -105,9 +103,7 @@
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/provider_paths" />
-        </provider>
-
-        <!--meta-data-->
+        </provider> <!-- meta-data -->
         <meta-data
             android:name="firebase_messaging_auto_init_enabled"
             android:value="false" />

@@ -8,6 +8,11 @@
         <item name="android:dropDownListViewStyle">@style/SpinnerStyle</item>
     </style>
 
+    <!-- tab layout theme -->
+    <style name="SelectableItemBackground">
+        <item name="android:background">@color/color_aaaaaa</item>
+    </style>
+
     <!-- toolbar button size -->
     <style name="ActionButton" parent="@android:style/Widget.ActionButton">
         <item name="android:minWidth">32dp</item>

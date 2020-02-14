@@ -4,6 +4,7 @@ public class NetUrls {
 //    public static final String DOMAIN = "http://app.yeobo.co.kr";
     public static final String DOMAIN = "http://wetalk.alrigo.co.kr";
     public static final String ADDRESS = DOMAIN + "/lib/control.siso";       // 로그인
+    public static final String EXCHANGE_ADDRESS = "https://api.manana.kr/exchange/rate.json";
     public static final String SITEURL = "wetalk.alrigo.co.kr";
 //    public static final String ADDRESS = DOMAIN;       // 로그인
 
