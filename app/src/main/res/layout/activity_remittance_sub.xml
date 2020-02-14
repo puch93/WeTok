@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_f6f6f6"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="51dp"
+            android:background="@color/color_white"
+            android:theme="@style/ToolbarTheme"
+            app:contentInsetStart="0dp"
+            app:popupTheme="@style/ToolbarTheme">
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center_horizontal"
+                android:text="송금하기"
+                android:textColor="@color/color_333333"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_ededed" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_white"
+            android:orientation="vertical"
+            android:paddingTop="17dp"
+            android:paddingBottom="34dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="21dp"
+                android:text="내 위톡머니"
+                android:textColor="@color/color_3c4449"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="6.06"
+                    android:ellipsize="end"
+                    android:fontFamily="sans-serif"
+                    android:gravity="end"
+                    android:includeFontPadding="false"
+                    android:singleLine="true"
+                    android:textColor="@color/color_417ff2"
+                    android:textSize="28dp"
+                    android:textStyle="normal"
+                    android:text="299,900" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4.7dp"
+                    android:includeFontPadding="false"
+                    android:textColor="@color/color_417ff2"
+                    android:textSize="20dp"
+                    android:textStyle="bold"
+                    android:text="원" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.13" />
+
+                <LinearLayout
+                    android:layout_width="60dp"
+                    android:layout_height="27dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginRight="20.3dp"
+                    android:background="@drawable/btn_charge"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="18dp"
+                        android:text="충전"
+                        android:textColor="@color/color_417ff2"
+                        android:textSize="13dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/color_ededed" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/color_ededed" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@color/color_white"
+            android:orientation="vertical"
+            android:paddingLeft="20dp"
+            android:paddingTop="21dp"
+            android:paddingRight="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0.3dp"
+                android:text="입금 금액"
+                android:textColor="@color/color_3c4449"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:background="@null"
+                android:fontFamily="sans-serif"
+                android:gravity="end|center_vertical"
+                android:hint="숫자만 입력"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textColor="#3c4449"
+                android:textColorHint="@color/color_803c4449"
+                android:textSize="24dp"
+                android:textStyle="normal"
+                tools:text="100,000" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_ededed" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9.7dp"
+                android:layout_marginRight="15.7dp"
+                android:layout_marginBottom="12.7dp"
+                android:gravity="end"
+                android:includeFontPadding="false"
+                android:textColor="@color/color_803c4449"
+                android:textSize="12dp"
+                android:text="일십 만 원" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="0.3dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="27dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_money"
+                    android:gravity="center"
+                    android:textColor="@color/color_white"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    android:text="+ 1만" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="27dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_money"
+                    android:gravity="center"
+                    android:textColor="@color/color_white"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    android:text="+ 5만" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="27dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_money"
+                    android:gravity="center"
+                    android:textColor="@color/color_white"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    android:text="+ 10만" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="27dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_money"
+                    android:gravity="center"
+                    android:textColor="@color/color_white"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    android:text="+ 100만" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="27dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_money"
+                    android:gravity="center"
+                    android:textColor="@color/color_white"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    android:text="전액" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0.3dp"
+                android:layout_marginTop="27dp"
+                android:text="입금 후 잔액"
+                android:textColor="@color/color_3c4449"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="54dp"
+                android:fontFamily="sans-serif"
+                android:gravity="end|center_vertical"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:textColor="@color/color_803c4449"
+                android:textSize="24dp"
+                android:textStyle="normal"
+                android:text="100,000" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_ededed" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="9.7dp"
+                android:layout_marginRight="15.7dp"
+                android:layout_marginBottom="12.7dp"
+                android:gravity="end"
+                android:includeFontPadding="false"
+                android:textColor="@color/color_803c4449"
+                android:textSize="12dp"
+                android:text="삼십 구만 구천 구백 원" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0.3dp"
+                android:layout_marginTop="13dp"
+                android:text="받는 사람"
+                android:textColor="@color/color_3c4449"
+                android:textSize="13dp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="54dp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:fontFamily="sans-serif"
+                        android:gravity="left|center_vertical"
+                        android:hint="받는 사람 ID"
+                        android:paddingLeft="13.3dp"
+                        android:paddingRight="13.3dp"
+                        android:textColor="@color/color_48c69e"
+                        android:textColorHint="@color/color_803c4449"
+                        android:textSize="16dp"
+                        android:textStyle="bold"
+                        tools:text="최인렬" />
+
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginRight="14dp"
+                        android:background="@color/color_ededed" />
+
+                </LinearLayout>
+                <TextView
+                    android:id="@+id/tv_search_other"
+                    android:layout_width="60dp"
+                    android:layout_height="37dp"
+                    android:background="@drawable/btn_search_id"
+                    android:gravity="center"
+                    android:text="조회"
+                    android:textColor="@color/color_48c69e"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_search_friend"
+                    android:layout_width="60dp"
+                    android:layout_height="37dp"
+                    android:layout_marginLeft="6dp"
+                    android:background="@drawable/btn_search_friend"
+                    android:gravity="center"
+                    android:text="친구"
+                    android:textColor="@color/color_white"
+                    android:textSize="16dp"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/tv_remittance"
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:background="@color/color_48c69e"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/color_white"
+            android:gravity="center"
+            android:text="송금하기"/>
+    </LinearLayout>
+</layout>

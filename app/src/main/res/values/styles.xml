@@ -6,11 +6,13 @@
         <item name="colorPrimaryDark">@color/color_28a7e1</item>
         <item name="colorAccent">@color/color_28a7e1</item>
         <item name="android:dropDownListViewStyle">@style/SpinnerStyle</item>
+        <item name="colorControlHighlight">@color/color_aaaaaa</item>
     </style>
 
-    <!-- tab layout theme -->
-    <style name="SelectableItemBackground">
-        <item name="android:background">@color/color_aaaaaa</item>
+    <!-- dialog open/close animation -->
+    <style name="AnimationPopupStyle">
+        <item name="android:windowEnterAnimation">@anim/open</item>
+        <item name="android:windowExitAnimation">@anim/close</item>
     </style>
 
     <!-- toolbar button size -->

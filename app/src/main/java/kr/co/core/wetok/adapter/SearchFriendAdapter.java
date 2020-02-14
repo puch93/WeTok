@@ -10,11 +10,13 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import kr.co.core.wetok.fragment.BaseFrag;
 import kr.co.core.wetok.fragment.account.NormalAccountFrag;
 import kr.co.core.wetok.fragment.account.WeChatAccountFrag;
+import kr.co.core.wetok.fragment.search_friend.SearchFromFriendFrag;
+import kr.co.core.wetok.fragment.search_friend.SearchFromIdFrag;
 
 
-public class AccountSettingPagerAdapter extends FragmentStatePagerAdapter {
+public class SearchFriendAdapter extends FragmentStatePagerAdapter {
 
-    public AccountSettingPagerAdapter(FragmentManager fm) {
+    public SearchFriendAdapter(FragmentManager fm) {
         super(fm);
     }
 
@@ -23,10 +25,10 @@ public class AccountSettingPagerAdapter extends FragmentStatePagerAdapter {
         Fragment currentFragment = null;
         switch (i) {
             case 0:
-                currentFragment = new NormalAccountFrag();
+                currentFragment = new SearchFromIdFrag();
                 break;
             case 1:
-                currentFragment = new WeChatAccountFrag();
+                currentFragment = new SearchFromFriendFrag();
                 break;
         }
         return currentFragment;

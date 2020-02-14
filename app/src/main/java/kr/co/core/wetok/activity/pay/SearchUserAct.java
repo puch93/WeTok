@@ -1,4 +1,4 @@
-package kr.co.core.wetok.activity;
+package kr.co.core.wetok.activity.pay;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -11,21 +11,19 @@ import android.view.MenuItem;
 import com.google.android.material.tabs.TabLayout;
 
 import kr.co.core.wetok.R;
-import kr.co.core.wetok.adapter.AccountSettingPagerAdapter;
-import kr.co.core.wetok.databinding.ActivityAccountSettingBinding;
+import kr.co.core.wetok.adapter.SearchFriendAdapter;
+import kr.co.core.wetok.databinding.ActivitySearchUserBinding;
 
-public class AccountSettingAct extends AppCompatActivity {
-    ActivityAccountSettingBinding binding;
+public class SearchUserAct extends AppCompatActivity {
+    ActivitySearchUserBinding binding;
     ActionBar actionBar;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_account_setting, null);
-
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_search_user, null);
         setActionBar();
 
-        binding.viewPager.setAdapter(new AccountSettingPagerAdapter(getSupportFragmentManager()));
+        binding.viewPager.setAdapter(new SearchFriendAdapter(getSupportFragmentManager()));
 
         binding.viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(binding.layoutTab));
 

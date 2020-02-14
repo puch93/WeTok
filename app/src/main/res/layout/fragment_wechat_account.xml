@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/color_white"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginBottom="9.3dp"
+            android:text="QR 이미지 등록"
+            android:textColor="@color/color_3c4449"
+            android:textSize="13dp"
+            android:textStyle="bold" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/qr_box" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:layout_gravity="center"
+                android:adjustViewBounds="true"
+                android:src="@drawable/icon_camera" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:layout_gravity="center"
+                android:layout_margin="25.3dp"
+                />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="54dp"
+            android:background="@drawable/btn_agree_on"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="QR 이미지 등록하기"
+            android:textColor="@color/color_48c69e"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="63dp"
+            android:background="@color/col_account_setting_agree"
+            android:gravity="center"
+            android:text="위챗계좌 설정완료"
+            android:textColor="@color/color_white"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+</layout>

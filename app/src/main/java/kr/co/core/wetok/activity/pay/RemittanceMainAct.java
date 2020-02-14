@@ -1,4 +1,4 @@
-package kr.co.core.wetok.activity;
+package kr.co.core.wetok.activity.pay;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -9,42 +9,21 @@ import androidx.databinding.DataBindingUtil;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
-import javax.net.ssl.HttpsURLConnection;
-
 import kr.co.core.wetok.R;
-import kr.co.core.wetok.databinding.ActivityRemittanceBinding;
-import kr.co.core.wetok.preference.UserPref;
-import kr.co.core.wetok.server.ReqBasic;
-import kr.co.core.wetok.server.netUtil.HttpResult;
-import kr.co.core.wetok.server.netUtil.NetUrls;
-import kr.co.core.wetok.util.Common;
-import kr.co.core.wetok.util.StringUtil;
+import kr.co.core.wetok.databinding.ActivityRemittanceMainBinding;
 
-public class RemittanceAct extends AppCompatActivity implements View.OnClickListener {
-    ActivityRemittanceBinding binding;
+public class RemittanceMainAct extends AppCompatActivity implements View.OnClickListener {
+    ActivityRemittanceMainBinding binding;
     Activity act;
     ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_remittance, null);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_remittance_main, null);
         act = this;
         firstSet();
     }
@@ -59,6 +38,7 @@ public class RemittanceAct extends AppCompatActivity implements View.OnClickList
         binding.tvExchangeReceive.setOnClickListener(this);
         binding.tvExchangeSend.setOnClickListener(this);
         binding.flAccountSetting.setOnClickListener(this);
+        binding.llRemittance.setOnClickListener(this);
     }
 
     private void setActionBar() {
@@ -90,6 +70,10 @@ public class RemittanceAct extends AppCompatActivity implements View.OnClickList
 
             case R.id.fl_account_setting:
                 startActivity(new Intent(act, AccountSettingAct.class));
+                break;
+
+            case R.id.ll_remittance:
+                startActivity(new Intent(act, RemittanceSubAct.class));
                 break;
         }
 

@@ -230,6 +230,7 @@
                 android:background="@color/color_ededed" />
 
             <LinearLayout
+                android:id="@+id/ll_remittance"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:background="@color/color_white"

@@ -30,8 +30,12 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup,android:icon">
-        <activity android:name=".activity.AccountSettingAct"></activity>
-        <activity android:name=".activity.RemittanceAct" />
+        <activity android:name=".dialog.AccPasswordDialog"
+            android:theme="@style/ActivityDialog" />
+        <activity android:name=".activity.pay.SearchUserAct" />
+        <activity android:name=".activity.pay.RemittanceSubAct" />
+        <activity android:name=".activity.pay.AccountSettingAct" />
+        <activity android:name=".activity.pay.RemittanceMainAct" />
         <activity
             android:name=".dialog.DatePickerDialog"
             android:theme="@style/ActivityDialog" />

@@ -21,19 +21,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import io.realm.Realm;
-import io.realm.RealmConfiguration;
-import io.realm.exceptions.RealmMigrationNeededException;
-import io.realm.exceptions.RealmPrimaryKeyConstraintException;
 import kr.co.core.wetok.R;
 import kr.co.core.wetok.activity.ProfileAct;
-import kr.co.core.wetok.activity.RemittanceAct;
+import kr.co.core.wetok.activity.pay.RemittanceMainAct;
 import kr.co.core.wetok.activity.SettingAct;
 import kr.co.core.wetok.data.UserData;
 import kr.co.core.wetok.databinding.FragmentAllServiceBinding;
@@ -290,7 +285,7 @@ public class AllServiceFrag extends BaseFrag implements View.OnClickListener {
                 break;
 
             case R.id.tv_remittance:
-                startActivity(new Intent(act, RemittanceAct.class));
+                startActivity(new Intent(act, RemittanceMainAct.class));
                 break;
 
 
