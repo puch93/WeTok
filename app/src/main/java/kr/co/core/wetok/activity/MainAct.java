@@ -1,33 +1,17 @@
 package kr.co.core.wetok.activity;
 
 import androidx.appcompat.app.ActionBar;
-import androidx.core.app.NotificationCompat;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.content.res.Configuration;
-import android.graphics.Rect;
 import android.os.Bundle;
-import android.os.Looper;
 import android.util.Log;
 import android.view.View;
-import android.view.ViewTreeObserver;
-import android.view.Window;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.LinearLayout;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.google.firebase.iid.FirebaseInstanceId;
 
 import org.json.JSONException;
@@ -36,22 +20,18 @@ import org.json.JSONObject;
 import java.util.List;
 
 import kr.co.core.wetok.R;
-import kr.co.core.wetok.data.UserData;
 import kr.co.core.wetok.databinding.ActivityMainBinding;
 import kr.co.core.wetok.fragment.main.AllServiceFrag;
 import kr.co.core.wetok.fragment.BaseFrag;
 import kr.co.core.wetok.fragment.main.ChattingFrag;
 import kr.co.core.wetok.fragment.main.FriendListFrag;
-import kr.co.core.wetok.preference.SystemPref;
 import kr.co.core.wetok.preference.UserPref;
 import kr.co.core.wetok.server.ReqBasic;
 import kr.co.core.wetok.server.netUtil.HttpResult;
 import kr.co.core.wetok.server.netUtil.NetUrls;
 import kr.co.core.wetok.util.BackPressCloseHandler;
 import kr.co.core.wetok.util.Common;
-import kr.co.core.wetok.util.KeyboardHeightObserver;
 import kr.co.core.wetok.util.KeyboardHeightProvider;
-import kr.co.core.wetok.util.SoftKeyboard;
 import kr.co.core.wetok.util.StringUtil;
 
 public class MainAct extends BaseAct implements View.OnClickListener {

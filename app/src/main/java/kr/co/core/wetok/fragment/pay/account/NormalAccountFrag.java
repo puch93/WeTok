@@ -1,14 +1,11 @@
-package kr.co.core.wetok.fragment.account;
+package kr.co.core.wetok.fragment.pay.account;
 
 
 import android.content.Context;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.Spinner;
 
@@ -17,24 +14,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.lang.reflect.Field;
 
 import kr.co.core.wetok.R;
-import kr.co.core.wetok.activity.FindPwAct;
 import kr.co.core.wetok.adapter.AccountSpinnerAdapter;
-import kr.co.core.wetok.adapter.WriteSpinnerAdapter;
-import kr.co.core.wetok.databinding.FragmentFind01Binding;
 import kr.co.core.wetok.databinding.FragmentNormalAccountBinding;
 import kr.co.core.wetok.fragment.BaseFrag;
-import kr.co.core.wetok.fragment.find.Find02Frag;
-import kr.co.core.wetok.server.ReqBasic;
-import kr.co.core.wetok.server.netUtil.HttpResult;
-import kr.co.core.wetok.server.netUtil.NetUrls;
-import kr.co.core.wetok.util.Common;
-import kr.co.core.wetok.util.CustomSpinner;
+import kr.co.core.wetok.util.FragmentResultListener;
 
 public class NormalAccountFrag extends BaseFrag implements View.OnClickListener {
     private FragmentNormalAccountBinding binding;
@@ -45,6 +31,8 @@ public class NormalAccountFrag extends BaseFrag implements View.OnClickListener 
     private String[] china_banks = {"선택", "족팡매야", "니취팔러마"};
     private int[] country_flags = {0, R.drawable.korea_flag, R.drawable.china_flag};
 
+    FragmentResultListener resultListener;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -54,6 +42,16 @@ public class NormalAccountFrag extends BaseFrag implements View.OnClickListener 
         setSpinner();
 
         return binding.getRoot();
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if(context instanceof FragmentResultListener) {
+            resultListener = (FragmentResultListener) context;
+        } else {
+            throw new RuntimeException(context.toString() + " must implement OnTimePickerSetListener");
+        }
     }
 
     private void setSpinner() {

@@ -3,7 +3,6 @@ package kr.co.core.wetok.fragment.join;
 
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,16 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import kr.co.core.wetok.R;
-import kr.co.core.wetok.activity.JoinAct;
-import kr.co.core.wetok.activity.LoginAct;
-import kr.co.core.wetok.activity.MainAct;
-import kr.co.core.wetok.databinding.FragmentJoin03Binding;
 import kr.co.core.wetok.databinding.FragmentJoin04Binding;
 import kr.co.core.wetok.fragment.BaseFrag;
 import kr.co.core.wetok.preference.UserPref;

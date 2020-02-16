@@ -28,6 +28,7 @@ import org.json.JSONObject;
 import io.realm.Realm;
 import kr.co.core.wetok.R;
 import kr.co.core.wetok.activity.ProfileAct;
+import kr.co.core.wetok.activity.pay.PayChargingAct;
 import kr.co.core.wetok.activity.pay.RemittanceMainAct;
 import kr.co.core.wetok.activity.SettingAct;
 import kr.co.core.wetok.data.UserData;
@@ -288,9 +289,11 @@ public class AllServiceFrag extends BaseFrag implements View.OnClickListener {
                 startActivity(new Intent(act, RemittanceMainAct.class));
                 break;
 
+            case R.id.tv_charge:
+                startActivity(new Intent(act, PayChargingAct.class));
+                break;
 
             case R.id.iv_share:
-            case R.id.tv_charge:
             case R.id.ll_tv_area:
             case R.id.ll_movie_area:
             case R.id.ll_destiny_area:

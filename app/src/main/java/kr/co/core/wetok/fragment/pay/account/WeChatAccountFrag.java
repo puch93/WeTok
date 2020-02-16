@@ -1,23 +1,17 @@
-package kr.co.core.wetok.fragment.account;
+package kr.co.core.wetok.fragment.pay.account;
 
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import java.lang.reflect.Field;
-
 import kr.co.core.wetok.R;
-import kr.co.core.wetok.adapter.AccountSpinnerAdapter;
-import kr.co.core.wetok.databinding.FragmentNormalAccountBinding;
 import kr.co.core.wetok.databinding.FragmentWechatAccountBinding;
 import kr.co.core.wetok.fragment.BaseFrag;
 

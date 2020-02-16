@@ -39,6 +39,8 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:background="@color/color_white"
+            app:tabBackground="@android:color/transparent"
+            app:tabRippleColor="@null"
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/color_3c4449"
             app:tabMode="fixed"
@@ -63,9 +65,61 @@
             android:layout_marginTop="10dp"
             android:background="@color/color_ededed" />
 
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/view_pager"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <LinearLayout
+                android:id="@+id/ll_result_area"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                android:background="@color/color_white"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="30.35"/>
+                <ImageView
+                    android:layout_width="85dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:src="@drawable/icon_done" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="37.7dp"
+                    android:gravity="center_horizontal"
+                    android:textStyle="bold"
+                    android:lineSpacingExtra="7dp"
+                    android:text="출금계좌 설정을\n완료하였습니다"
+                    android:textColor="@color/color_3c4449"
+                    android:textSize="23dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="34.94"/>
+
+
+                <TextView
+                    android:id="@+id/tv_confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="63dp"
+                    android:background="@color/color_48c69e"
+                    android:gravity="center"
+                    android:text="확인"
+                    android:textColor="@color/color_white"
+                    android:textSize="20dp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </FrameLayout>
     </LinearLayout>
 </layout>

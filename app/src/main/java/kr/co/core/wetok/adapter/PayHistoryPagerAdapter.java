@@ -8,35 +8,25 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import kr.co.core.wetok.fragment.BaseFrag;
+import kr.co.core.wetok.fragment.pay.PayHistoryFrag;
 import kr.co.core.wetok.fragment.pay.account.NormalAccountFrag;
 import kr.co.core.wetok.fragment.pay.account.WeChatAccountFrag;
-import kr.co.core.wetok.fragment.pay.search_friend.SearchFromFriendFrag;
-import kr.co.core.wetok.fragment.pay.search_friend.SearchFromIdFrag;
 
+public class PayHistoryPagerAdapter extends FragmentStatePagerAdapter {
 
-public class SearchFriendAdapter extends FragmentStatePagerAdapter {
-
-    public SearchFriendAdapter(FragmentManager fm) {
+    public PayHistoryPagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
     @Override
     public Fragment getItem(int i) {
-        Fragment currentFragment = null;
-        switch (i) {
-            case 0:
-                currentFragment = new SearchFromIdFrag();
-                break;
-            case 1:
-                currentFragment = new SearchFromFriendFrag();
-                break;
-        }
+        Fragment currentFragment = new PayHistoryFrag();
         return currentFragment;
     }
 
     @Override
     public int getCount() {
-        return 2;
+        return 5;
     }
 
     @NonNull

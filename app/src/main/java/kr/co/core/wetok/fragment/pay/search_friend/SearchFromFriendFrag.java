@@ -1,4 +1,4 @@
-package kr.co.core.wetok.fragment.search_friend;
+package kr.co.core.wetok.fragment.pay.search_friend;
 
 
 import android.os.Bundle;
@@ -13,7 +13,6 @@ import androidx.databinding.DataBindingUtil;
 
 import kr.co.core.wetok.R;
 import kr.co.core.wetok.databinding.FragmentSearchFromFriendBinding;
-import kr.co.core.wetok.databinding.FragmentSearchFromIdBinding;
 import kr.co.core.wetok.fragment.BaseFrag;
 
 public class SearchFromFriendFrag extends BaseFrag implements View.OnClickListener {

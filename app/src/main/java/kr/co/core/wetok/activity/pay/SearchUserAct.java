@@ -19,17 +19,18 @@ public class SearchUserAct extends AppCompatActivity {
     ActionBar actionBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_search_user, null);
-        setActionBar();
+            super.onCreate(savedInstanceState);
+            binding = DataBindingUtil.setContentView(this, R.layout.activity_search_user, null);
+            setActionBar();
 
-        binding.viewPager.setAdapter(new SearchFriendAdapter(getSupportFragmentManager()));
+            binding.viewPager.setAdapter(new SearchFriendAdapter(getSupportFragmentManager()));
 
-        binding.viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(binding.layoutTab));
+            binding.viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(binding.layoutTab));
 
-        binding.layoutTab.getTabAt(0).select();
+            binding.layoutTab.getTabAt(0).select();
 
-        binding.layoutTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+
+            binding.layoutTab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 binding.viewPager.setCurrentItem(tab.getPosition(), true);

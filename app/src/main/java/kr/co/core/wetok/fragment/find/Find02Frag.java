@@ -2,16 +2,12 @@ package kr.co.core.wetok.fragment.find;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -24,10 +20,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import kr.co.core.wetok.R;
-import kr.co.core.wetok.activity.FindPwAct;
 import kr.co.core.wetok.databinding.FragmentFind02Binding;
 import kr.co.core.wetok.fragment.BaseFrag;
-import kr.co.core.wetok.preference.UserPref;
 import kr.co.core.wetok.server.ReqBasic;
 import kr.co.core.wetok.server.netUtil.HttpResult;
 import kr.co.core.wetok.server.netUtil.NetUrls;

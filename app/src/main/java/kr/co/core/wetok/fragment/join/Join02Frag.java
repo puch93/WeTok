@@ -18,11 +18,9 @@ import java.util.regex.Pattern;
 
 import kr.co.core.wetok.R;
 import kr.co.core.wetok.activity.JoinAct;
-import kr.co.core.wetok.databinding.FragmentJoin01Binding;
 import kr.co.core.wetok.databinding.FragmentJoin02Binding;
 import kr.co.core.wetok.fragment.BaseFrag;
 import kr.co.core.wetok.util.Common;
-import kr.co.core.wetok.util.StringUtil;
 
 public class Join02Frag extends BaseFrag implements View.OnClickListener {
     private FragmentJoin02Binding binding;

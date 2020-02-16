@@ -10,17 +10,12 @@ import android.view.View;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
-import androidx.fragment.app.FragmentTransaction;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import kr.co.core.wetok.R;
-import kr.co.core.wetok.databinding.ActivityFindPwBinding;
 import kr.co.core.wetok.databinding.ActivityModifyPwBinding;
-import kr.co.core.wetok.fragment.BaseFrag;
-import kr.co.core.wetok.fragment.find.Find01Frag;
-import kr.co.core.wetok.fragment.join.Join03Frag;
 import kr.co.core.wetok.preference.UserPref;
 import kr.co.core.wetok.server.ReqBasic;
 import kr.co.core.wetok.server.netUtil.HttpResult;

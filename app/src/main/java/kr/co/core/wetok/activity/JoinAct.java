@@ -2,17 +2,12 @@ package kr.co.core.wetok.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import kr.co.core.wetok.R;
 import kr.co.core.wetok.databinding.ActivityJoinBinding;
@@ -20,11 +15,6 @@ import kr.co.core.wetok.fragment.BaseFrag;
 import kr.co.core.wetok.fragment.join.Join01Frag;
 import kr.co.core.wetok.fragment.join.Join02Frag;
 import kr.co.core.wetok.fragment.join.Join03Frag;
-import kr.co.core.wetok.server.ReqBasic;
-import kr.co.core.wetok.server.netUtil.HttpResult;
-import kr.co.core.wetok.server.netUtil.NetUrls;
-import kr.co.core.wetok.util.Common;
-import kr.co.core.wetok.util.StringUtil;
 
 public class JoinAct extends BaseAct {
     ActivityJoinBinding binding;

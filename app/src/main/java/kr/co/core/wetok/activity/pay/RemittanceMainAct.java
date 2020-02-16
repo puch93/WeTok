@@ -39,6 +39,7 @@ public class RemittanceMainAct extends AppCompatActivity implements View.OnClick
         binding.tvExchangeSend.setOnClickListener(this);
         binding.flAccountSetting.setOnClickListener(this);
         binding.llRemittance.setOnClickListener(this);
+        binding.llHistory.setOnClickListener(this);
     }
 
     private void setActionBar() {
@@ -58,6 +59,10 @@ public class RemittanceMainAct extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.ll_history:
+                startActivity(new Intent(act, PayHistoryAct.class));
+                break;
+
             case R.id.tv_exchange_receive:
                 binding.tvExchangeSend.setSelected(false);
                 binding.tvExchangeReceive.setSelected(true);

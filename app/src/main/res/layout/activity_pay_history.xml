@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,7 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center_horizontal"
-                android:text="받는 사람"
+                android:text="거래내역"
                 android:textColor="@color/color_333333"
                 android:textSize="18dp"
                 android:textStyle="bold" />
@@ -38,36 +39,48 @@
             android:id="@+id/layout_tab"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            app:tabBackground="@android:color/transparent"
-            app:tabRippleColor="@null"
             android:background="@color/color_white"
+            app:tabBackground="@android:color/transparent"
             app:tabGravity="fill"
             app:tabIndicatorColor="@color/color_3c4449"
             app:tabMode="fixed"
+            app:tabRippleColor="@null"
             app:tabSelectedTextColor="@color/color_3c4449"
             app:tabTextColor="@color/color_803c4449">
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="위톡ID" />
+                android:text="전체" />
 
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="친구리스트" />
+                android:text="입금" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="송금" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="출금" />
+
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="충전" />
 
         </com.google.android.material.tabs.TabLayout>
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/color_ededed" />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:background="@color/color_white" />
+
     </LinearLayout>
 </layout>

@@ -3,12 +3,10 @@ package kr.co.core.wetok.fragment.join;
 
 import android.app.Dialog;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -20,8 +18,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -32,7 +28,6 @@ import androidx.core.content.FileProvider;
 import androidx.databinding.DataBindingUtil;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -51,8 +46,6 @@ import java.util.List;
 import kr.co.core.wetok.BuildConfig;
 import kr.co.core.wetok.R;
 import kr.co.core.wetok.activity.JoinAct;
-import kr.co.core.wetok.adapter.WriteSpinnerAdapter;
-import kr.co.core.wetok.databinding.FragmentJoin02Binding;
 import kr.co.core.wetok.databinding.FragmentJoin03Binding;
 import kr.co.core.wetok.dialog.DatePickerDialog;
 import kr.co.core.wetok.fragment.BaseFrag;
@@ -61,7 +54,6 @@ import kr.co.core.wetok.server.ReqBasic;
 import kr.co.core.wetok.server.netUtil.HttpResult;
 import kr.co.core.wetok.server.netUtil.NetUrls;
 import kr.co.core.wetok.util.Common;
-import kr.co.core.wetok.util.CustomSpinner;
 import kr.co.core.wetok.util.StringUtil;
 
 import static android.app.Activity.RESULT_OK;

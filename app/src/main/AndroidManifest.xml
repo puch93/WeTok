@@ -30,15 +30,34 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup,android:icon">
-        <activity android:name=".dialog.AccPasswordDialog"
+        <activity android:name=".activity.pay.PayHistoryAct"></activity>
+        <activity android:name=".activity.pay.PayConfirmAct" />
+        <activity
+            android:name=".dialog.PayChargeMoreDialog"
             android:theme="@style/ActivityDialog" />
+        <activity
+            android:name=".dialog.AccPasswordDialog"
+            android:theme="@style/ActivityDialog" />
+        <activity
+            android:name=".dialog.AccountSettingDialog"
+            android:theme="@style/ActivityDialog" />
+        <activity
+            android:name=".dialog.PayConfirmDialog"
+            android:theme="@style/ActivityDialog" />
+        <activity
+            android:name=".dialog.AccPasswordConfirmDialog"
+            android:theme="@style/ActivityDialog" />
+        <activity
+            android:name=".dialog.DatePickerDialog"
+            android:theme="@style/ActivityDialog" />
+        <activity
+            android:name=".dialog.PopUpAdDlg"
+            android:theme="@style/ActivityDialog" />
+        <activity android:name=".activity.pay.PayChargingAct" />
         <activity android:name=".activity.pay.SearchUserAct" />
         <activity android:name=".activity.pay.RemittanceSubAct" />
         <activity android:name=".activity.pay.AccountSettingAct" />
         <activity android:name=".activity.pay.RemittanceMainAct" />
-        <activity
-            android:name=".dialog.DatePickerDialog"
-            android:theme="@style/ActivityDialog" />
         <activity android:name=".activity.rtc.ConnectActivity" />
         <activity android:name=".activity.rtc.VoiceCallAct" />
         <activity android:name=".activity.rtc.VideoCallAct" />
@@ -66,13 +85,10 @@
         <activity android:name=".activity.JoinAct" />
         <activity android:name=".activity.MainAct" />
         <activity android:name=".activity.BaseAct" />
+        <activity android:name=".activity.EnlargeAct" />
         <activity
             android:name=".activity.ChatAct"
             android:windowSoftInputMode="adjustResize" />
-        <activity
-            android:name=".dialog.PopUpAdDlg"
-            android:theme="@style/ActivityDialog" />
-        <activity android:name=".activity.EnlargeAct" />
         <activity
             android:name=".activity.ProfileOtherAct"
             android:theme="@style/Theme.Slidr.Slidable" />

@@ -8,9 +8,8 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import kr.co.core.wetok.fragment.BaseFrag;
-import kr.co.core.wetok.fragment.account.NormalAccountFrag;
-import kr.co.core.wetok.fragment.account.WeChatAccountFrag;
-
+import kr.co.core.wetok.fragment.pay.account.NormalAccountFrag;
+import kr.co.core.wetok.fragment.pay.account.WeChatAccountFrag;
 
 public class AccountSettingPagerAdapter extends FragmentStatePagerAdapter {
 
