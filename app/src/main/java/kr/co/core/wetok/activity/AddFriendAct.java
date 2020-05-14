@@ -327,8 +327,8 @@ public class AddFriendAct extends AppCompatActivity implements View.OnClickListe
                 binding.llFromId.setSelected(true);
                 binding.llFromNumber.setSelected(false);
 
-//                binding.ivFromNumber.setVisibility(View.INVISIBLE);
-//                binding.ivFromId.setVisibility(View.VISIBLE);
+                binding.ivFromNumber.setVisibility(View.INVISIBLE);
+                binding.ivFromId.setVisibility(View.VISIBLE);
 
                 binding.llFromNumberArea.setVisibility(View.GONE);
                 binding.llFromIdArea.setVisibility(View.VISIBLE);
@@ -338,8 +338,8 @@ public class AddFriendAct extends AppCompatActivity implements View.OnClickListe
                 binding.llFromId.setSelected(false);
                 binding.llFromNumber.setSelected(true);
 
-//                binding.ivFromNumber.setVisibility(View.VISIBLE);
-//                binding.ivFromId.setVisibility(View.INVISIBLE);
+                binding.ivFromNumber.setVisibility(View.VISIBLE);
+                binding.ivFromId.setVisibility(View.INVISIBLE);
 
                 binding.llFromNumberArea.setVisibility(View.VISIBLE);
                 binding.llFromIdArea.setVisibility(View.GONE);

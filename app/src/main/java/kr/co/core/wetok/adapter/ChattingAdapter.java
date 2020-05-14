@@ -436,7 +436,8 @@ public class ChattingAdapter extends RecyclerView.Adapter<ChattingAdapter.ViewHo
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(Intent.ACTION_VIEW);
-                        Uri uri = Uri.parse(NetUrls.DOMAIN + video_me);
+//                        Uri uri = Uri.parse(NetUrls.DOMAIN + video_me);
+                        Uri uri = Uri.parse("https://biasple.alrigo.co.kr/UPLOAD/CHATTING/30726684_NzAEQFOa_1569214674122.mp4");
                         intent.setDataAndType(uri, "video/*");
                         if (intent.resolveActivity(act.getPackageManager()) != null) {
                             act.startActivity(intent);

@@ -39,12 +39,13 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             app:tabBackground="@android:color/transparent"
+            app:tabIndicatorAnimationDuration="0"
             app:tabRippleColor="@null"
             android:background="@color/color_white"
             app:tabGravity="fill"
-            app:tabIndicatorColor="@color/color_3c4449"
             app:tabMode="fixed"
             app:tabSelectedTextColor="@color/color_3c4449"
+            app:tabIndicatorColor="@color/color_3c4449"
             app:tabTextColor="@color/color_803c4449">
 
             <com.google.android.material.tabs.TabItem

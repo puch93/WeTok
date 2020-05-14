@@ -237,19 +237,19 @@ public class SplashAct extends BaseAct {
             @Override
             public void run() {
                 new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (fcm_token != null && isReady) {
-                            isReady = false;
+                                @Override
+                                public void run() {
+                                    if (fcm_token != null && isReady) {
+                                        isReady = false;
 
-                            if (UserPref.getAutoLogin(act)) {
-                                setAutoLogin();
-                            } else {
-                                startActivity(new Intent(act, LoginAct.class));
-                                finish();
-                            }
+                                        if (UserPref.getAutoLogin(act)) {
+                                            setAutoLogin();
+                                        } else {
+                                            startActivity(new Intent(act, LoginAct.class));
+                                            finish();
+                                        }
 
-                            timer.cancel();
+                                        timer.cancel();
                         }
                     }
                 }, 0);
