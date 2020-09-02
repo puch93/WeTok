@@ -325,7 +325,7 @@ public class VideoCallAct extends BaseAct implements AppRTCClient.SignalingEvent
         pipRenderer.setEnableHardwareScaler(true /* enabled */);
         fullscreenRenderer.setEnableHardwareScaler(true /* enabled */);
         // Start with local feed in fullscreen and swap it to the pip when the call is connected.
-        setSwappedFeeds(true /* isSwappedFeeds */);
+        setSwappedFeeds(false /* isSwappedFeeds */);
 
 
         Uri roomUri = intent.getData();

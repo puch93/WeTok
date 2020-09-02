@@ -333,6 +333,7 @@ public class LoginAct extends AppCompatActivity implements View.OnClickListener 
         }
     }
 
+
     private void writeDB() {
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override

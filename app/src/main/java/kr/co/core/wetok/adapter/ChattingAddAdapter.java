@@ -53,7 +53,6 @@ public class ChattingAddAdapter extends RecyclerView.Adapter<ChattingAddAdapter.
 
         Glide.with(act)
                 .load(NetUrls.DOMAIN + data.getProfile_img())
-
                 .into(holder.iv_profile);
 
         holder.ll_all_area.setOnClickListener(new View.OnClickListener() {
